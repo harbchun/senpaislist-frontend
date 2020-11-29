@@ -24,6 +24,30 @@ module.exports = {
     ],
     rules: {
         semi: ['error', 'never'],
+        "no-unused-vars": ["warn", {
+            // ignore _ and variables with 'ignore' on the name
+            "argsIgnorePattern": "^_$|[iI]gnore",
+            "varsIgnorePattern": "^_$|[iI]gnore"
+        }],
+        "max-len": ["error", 100, 2, { ignoreUrls: true, ignorePattern: "^import [^,]+ from |^export | implements " }], // airbnb is allowing some edge cases
+        "no-console": "warn",
+        "no-alert": "error", // airbnb is using warn
+        "import/first": 0,
+        "import/named": 2,
+        "import/namespace": 2,
+        "import/default": 2,
+        "import/export": 2,
+        "import/extensions": 0,
+        "import/no-unresolved": [ "error", { ignore: ["^@"] }],
+        "import/no-extraneous-dependencies": 0,
+        "import/no-unresolved": 0, // Allow aliases as import path  
+        "no-trailing-spaces": "warn",
+        "linebreak-style": "off", // Don't play nicely with Windows.
+        "object-curly-newline": "off", // Incompatible with prettier
+        "no-mixed-operators": "off", // Incompatible with prettier
+        "function-paren-newline": "off", // Incompatible with prettier
+        "no-plusplus": "off",
+        "space-before-function-paren": 0, // Incompatible with prettier
         'prettier/prettier': ['error', {}, { usePrettierrc: true }], // Use our .prettierrc file as source
         'react/react-in-jsx-scope': 'off',
         'jsx-a11y/anchor-is-valid': [
