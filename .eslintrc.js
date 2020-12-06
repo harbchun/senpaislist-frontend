@@ -22,6 +22,7 @@ module.exports = {
         'plugin:jsx-a11y/recommended',
         'plugin:prettier/recommended' // Make this the last element so prettier config overrides other formatting rules
     ],
+    plugins: ["jsx-a11y", "react", "import", "prettier"], // "babel"
     rules: {
         semi: ['error', 'never'],
         "no-unused-vars": ["warn", {
