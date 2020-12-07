@@ -32,7 +32,7 @@ module.exports = {
         }],
         "max-len": ["error", 100, 2, { ignoreUrls: true, ignorePattern: "^import [^,]+ from |^export | implements " }], // airbnb is allowing some edge cases
         "no-console": "warn",
-        "no-alert": "error", // airbnb is using warn
+        "no-alert": "error",
         "import/first": 0,
         "import/named": 2,
         "import/namespace": 2,
