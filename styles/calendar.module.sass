@@ -1,0 +1,110 @@
+@import global
+
+.calendarContainer
+    display: grid
+    grid-template-columns: 1fr 30px 540px 1fr
+    flex-direction: column
+    padding-top: 40px
+
+    .expand
+        display: flex
+        grid-column-start: 2
+        grid-column-end: 3
+        margin-left: auto
+        margin-top: 35px
+        margin-bottom: auto
+
+        .calendarTitle
+            color: white
+            font-family: $open-sans
+            font-weight: 400
+            font-size: 20px
+            margin-left: 0.5em
+
+        .expandButton
+            height: 19px
+            width: 19px
+            background-color: #9E5BF1
+            border: none
+            outline: none
+            border-radius: 50px
+            position: relative
+            cursor: pointer
+
+            .negative
+                position: absolute
+                height: 1px
+                width: 11px
+                background-color: white
+                top: 9px
+                left: 4px
+
+            .positive
+                transition: transform 0.2s ease-out
+                position: absolute
+                height: 11px
+                width: 1px
+                background-color: white
+                top: 4px
+                left: 9px
+
+            .active
+                transform: rotate(90deg)
+    
+    .calendar
+        transition: height 0.2s ease-out
+        height: 88px
+        width: 520px
+        overflow-y: hidden
+        grid-column-start: 3
+        grid-column-end: 4
+        justify-self: center
+        scroll-behavior: smooth
+
+        .row
+            display: flex
+            margin-left: 1em
+
+            .cell
+                margin: 20px
+                cursor: pointer
+
+                .season
+                    color: white
+                    font-family: $pt-sans
+                    font-size: 30px
+                    user-select: none
+
+                .year
+                    color: white
+                    font-family: $open-sans
+                    font-size: 18px
+                    text-align: center
+                    user-select: none
+
+                &.active
+                    .season
+                        color: $primary-purple
+                    .year
+                        color: $primary-purple
+
+                &:hover
+                    .season
+                        color: $primary-purple
+
+                    .year
+                        color: $primary-purple
+
+        &::-webkit-scrollbar
+            width:  5px
+            height: 5px
+
+        &::-webkit-scrollbar-thumb 
+            background: $primary-green
+
+        &::-webkit-scrollbar-track 
+            background: $background-alt
+
+    & .expandCalendar
+        height: 352px
+        overflow-y: auto

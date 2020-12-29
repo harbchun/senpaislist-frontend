@@ -58,6 +58,7 @@ module.exports = {
                 specialLink: ['hrefLeft', 'hrefRight'],
                 aspects: ['invalidHref', 'preferButton']
             }
-        ]
+        ],
+        'jsx-a11y/no-noninteractive-element-interactions': 2
     }
 };

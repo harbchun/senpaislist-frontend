@@ -1,13 +1,19 @@
+import MainLayout from '~/components/layouts/mainLayout/MainLayout'
+import Nav from '~/components/nav/Nav'
+import Calendar from '~/components/calendar/Calendar'
+import FilterBar from '~/components/filterBar/FilterBar'
+import Cards from '~/components/cards/Cards'
+
 export default function Home() {
-    console.log('hi')
     return (
         <>
-            <div>
-                hello therehello therehello therehello therehello therehello therehello
-                therehellohello therehello therehello therehello therehello therehello therehello
-                therehellohello therehello therehello therehello therehello therehello therehello
-                therehello
-            </div>
+            <MainLayout header={<Nav />}>
+                <>
+                    <Calendar />
+                    <FilterBar />
+                    <Cards />
+                </>
+            </MainLayout>
         </>
-    );
+    )
 }

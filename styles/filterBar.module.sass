@@ -1,0 +1,47 @@
+@import global
+
+.filterBarContainer
+    border-bottom: 1px solid #303030
+    display: flex
+    justify-content: center
+    
+    .filterBar
+        display: flex
+        padding: 3em 2em 1em 2em
+        width: 1200px
+
+        .expandView, .sortBy, .search
+            display: flex
+            align-items: center
+            color: white
+            font-family: $pt-sans
+            margin: 0 1em
+
+        .expandView
+            .expandOption
+                height: 15px
+                width: 15px
+                border: 1px solid $primary-purple
+                margin: 0 1em
+                cursor: pointer
+
+                &:hover
+                    background-color: $primary-purple
+
+        .sortBy
+            .sortByOptions
+                height: 20px
+                width: 70px
+                border: 1px solid $primary-purple
+                margin: 0 1em
+                cursor: pointer
+
+        .search
+            margin-left: auto
+
+            .searchBar
+                height: 20px
+                width: 15vw
+                max-width: 200px
+                border: 1px solid $primary-purple
+                margin: 0 1em
