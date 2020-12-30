@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
+import CalendarSkeleton from './CalendarSkeleton'
 import { initStore, withRematch } from '~/rematch'
 
 import style from '~/styles/calendar.module.sass'
@@ -12,7 +13,8 @@ function Calendar({ year, season }) {
     const [currentSeason, useCurrentSeason] = useState(null)
     const [currentRef, useCurrentRef] = useState(null)
     const calendarRefs = {}
-
+    const loaded = true
+    
     useEffect(() => {
         useCurrentYear(year)
         useCurrentSeason(season)
@@ -20,7 +22,7 @@ function Calendar({ year, season }) {
     }, [])
 
     useEffect(() => {
-        if (!expand && currentYear) scrollTo()
+        if (!expand && currentYear && !loaded) scrollTo()
     }, [expand, currentYear])
 
     const updateSelected = (year, season) => {
@@ -55,6 +57,14 @@ function Calendar({ year, season }) {
             </div>
         )
     })
+
+    if (!loaded) {
+        return (
+            <div className={style.calendarContainer}>
+                <CalendarSkeleton/>
+            </div>
+        )
+    }
 
     return (
         <div className={style.calendarContainer}>

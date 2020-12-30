@@ -4,7 +4,6 @@ import style from '~/styles/card.module.sass'
 
 function Card() {
     const [expand, setExpand] = useState(false)
-    const imgLink = 'https://cdn.myanimelist.net/images/anime/1171/109222l.jpg'
 
     return (
         <div className={`${style.card} ${style.cardSkeleton}`}>
