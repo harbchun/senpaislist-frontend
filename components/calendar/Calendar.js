@@ -5,7 +5,7 @@ import { initStore, withRematch } from '~/rematch'
 
 import style from '~/styles/calendar.module.sass'
 
-function Calendar({ year, season }) {
+function Calendar({ year, season, expandedView, updateYear, updateSeason, updateExpandedView }) {
     const [expand, useExpand] = useState(false)
     const years = [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021]
     const seasons = ['Winter', 'Spring', 'Summer', 'Fall']
@@ -14,7 +14,7 @@ function Calendar({ year, season }) {
     const [currentRef, useCurrentRef] = useState(null)
     const calendarRefs = {}
     const loaded = true
-    
+
     useEffect(() => {
         useCurrentYear(year)
         useCurrentSeason(season)
@@ -22,8 +22,16 @@ function Calendar({ year, season }) {
     }, [])
 
     useEffect(() => {
-        if (!expand && currentYear && !loaded) scrollTo()
+        if (!expand && currentYear) scrollTo()
     }, [expand, currentYear])
+
+    useEffect(() => {
+        if (currentYear) updateYear(currentYear)
+    }, [currentYear])
+
+    useEffect(() => {
+        if (currentSeason) updateSeason(currentSeason)
+    }, [currentSeason])
 
     const updateSelected = (year, season) => {
         useCurrentYear(year)
@@ -61,7 +69,7 @@ function Calendar({ year, season }) {
     if (!loaded) {
         return (
             <div className={style.calendarContainer}>
-                <CalendarSkeleton/>
+                <CalendarSkeleton />
             </div>
         )
     }
@@ -83,7 +91,11 @@ function Calendar({ year, season }) {
 
 Calendar.propTypes = {
     year: PropTypes.number.isRequired,
-    season: PropTypes.string.isRequired
+    season: PropTypes.string.isRequired,
+    updateYear: PropTypes.func,
+    updateSeason: PropTypes.func,
+    expandedView: PropTypes.bool,
+    updateExpandedView: PropTypes.func
 }
 
 const mapState = (state) => ({
@@ -91,8 +103,9 @@ const mapState = (state) => ({
     season: state.anime.season
 })
 
-const mapDispatch = (dispatch) => {
-    return {}
-}
+const mapDispatch = (dispatch) => ({
+    updateYear: dispatch.anime.updateYear,
+    updateSeason: dispatch.anime.updateSeason
+})
 
 export default withRematch(initStore, mapState, mapDispatch)(Calendar)

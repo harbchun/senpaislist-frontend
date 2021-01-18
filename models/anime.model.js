@@ -1,7 +1,12 @@
+import serviceHooks from '~/services'
+
 const ANIME = {
   state: {
-    year: 2020,
-    season: 'Winter'
+    year: 2019,
+    season: 'Winter',
+    animeList: [],
+    filters: [],
+    expandedView: false
   },
   reducers: {
     // handle state changes with pure functions
@@ -16,12 +21,15 @@ const ANIME = {
           ...state,
           season: payload
         }
-    }
+    },
+    updateExpandedView(state, payload) {
+      return {
+        ...state,
+        expandedView: payload
+      }
+    },
   },
   effects: dispatch => ({
-    async fetchInsights({ title }) {
-      console.log('hihihi')
-    }
   })
 }
 

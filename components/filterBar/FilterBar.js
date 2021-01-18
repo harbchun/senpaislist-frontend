@@ -1,14 +1,18 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import { initStore, withRematch } from '~/rematch'
 
 import style from '~/styles/filterBar.module.sass'
 
-function FilterBar() {
+function FilterBar({ expandedView, updateExpandedView }) {
     return (
         <div className={style.filterBarContainer}>
             <div className={style.filterBar}>
                 <div className={style.expandView}>
                     Expanded View
-                    <div className={style.expandOption}></div>
+                    <button
+                        className={style.expandOption}
+                        onClick={() => updateExpandedView(!expandedView)}></button>
                 </div>
                 <div className={style.sortBy}>
                     Sort By
@@ -23,4 +27,17 @@ function FilterBar() {
     )
 }
 
-export default FilterBar
+FilterBar.propTypes = {
+    expandedView: PropTypes.string.boolean,
+    updateExpandedView: PropTypes.func
+}
+
+const mapState = (state) => ({
+    expandedView: state.anime.expandedView
+})
+
+const mapDispatch = (dispatch) => ({
+    updateExpandedView: dispatch.anime.updateExpandedView
+})
+
+export default withRematch(initStore, mapState, mapDispatch)(FilterBar)
