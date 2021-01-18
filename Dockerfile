@@ -3,8 +3,6 @@ FROM node:15
 ENV PORT 3000
 
 RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
-RUN mkdir -p /home/node/app/build && chown -R node:node /home/node/app/build
-
 WORKDIR /home/node/app
 
 USER node
@@ -21,4 +19,4 @@ RUN npm run build
 EXPOSE 3000
 
 # Running the app
-CMD "npm" "run" "dev-lint"
+CMD "npm" "run" "start"
