@@ -1,26 +1,18 @@
 FROM node:15
 
-ARG USER_ID=1000
-
-RUN adduser -D -u ${USER_ID} -s /bin/sh appuser
-
 ENV PORT 3000
 
-USER root
-
-RUN mkdir -p /home/node/app/node_modules
-RUN chown -R appuser /home/node/app
-
+RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
 WORKDIR /home/node/app
 
-USER appuser
+USER node
 
 # Installing dependencies
-COPY --chown=appuser package*.json ./
+COPY --chown=node:node package*.json ./
 RUN npm install
 
 # Copying source files
-COPY --chown=appuser . .
+COPY --chown=node:node . .
 
 # Building app
 RUN npm run build
