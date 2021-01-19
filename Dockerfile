@@ -5,7 +5,7 @@ ENV PORT 3000
 USER root
 
 RUN mkdir -p /home/node/app/node_modules
-RUN chown -R node:node /home/node
+RUN sudo chown -R node:node /home/node/app
 
 WORKDIR /home/node/app
 
