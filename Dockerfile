@@ -2,7 +2,6 @@ FROM node:15
 
 ARG USER_ID=1000
 
-RUN apt-get update && apk upgrade
 RUN adduser -D -u ${USER_ID} -s /bin/sh appuser
 
 ENV PORT 3000
