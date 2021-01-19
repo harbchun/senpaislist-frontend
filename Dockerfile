@@ -1,25 +1,27 @@
 FROM node:15
 
-RUN apt-get update && \
-      apt-get -y install sudo
+ARG USER_ID=1000
+
+RUN apt-get update && apk upgrade
+RUN adduser -D -u ${USER_ID} -s /bin/sh appuser
 
 ENV PORT 3000
 
 USER root
 
 RUN mkdir -p /home/node/app/node_modules
-RUN sudo chown -R node:node /home/node/app
+RUN chown -R appuser /home/node/app
 
 WORKDIR /home/node/app
 
 USER node
 
 # Installing dependencies
-COPY --chown=node:node package*.json ./
+COPY --chown=appuser package*.json ./
 RUN npm install
 
 # Copying source files
-COPY --chown=node:node . .
+COPY --chown=appuser . .
 
 # Building app
 RUN npm run build
