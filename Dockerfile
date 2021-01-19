@@ -1,5 +1,8 @@
 FROM node:15
 
+RUN apt-get update && \
+      apt-get -y install sudo
+
 ENV PORT 3000
 
 USER root
