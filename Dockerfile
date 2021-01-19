@@ -14,7 +14,7 @@ RUN chown -R appuser /home/node/app
 
 WORKDIR /home/node/app
 
-USER node
+USER appuser
 
 # Installing dependencies
 COPY --chown=appuser package*.json ./
