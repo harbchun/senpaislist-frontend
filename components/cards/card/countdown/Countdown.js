@@ -19,7 +19,10 @@ function Countdown({ broadcastTime, nextBroadcast }) {
         setSeconds(Math.floor((difference % (1000 * 60)) / 1000))
     }, 1000)
 
-    if (nextBroadcast == 'N/A' || seconds < 0) {
+    if (nextBroadcast === 'N/A' || seconds < 0) {
+        if (broadcastTime === 'N/A' || broadcastTime === 'unknown') {
+            broadcastTime = '-'
+        }
         return <p className={style.countdown}>
             {broadcastTime}
         </p>
