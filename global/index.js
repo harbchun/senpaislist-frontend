@@ -5,7 +5,7 @@ let apolloClient = null
 function createInstance() {
     // create an apollo link instance, a network interface for apollo client
     const link = new HttpLink({
-        uri: `https://senpaislist.com:8080/v1/graphql`,
+        uri: `https://senpaislist.com/v1/graphql`,
     })
 
     // create an inmemory cache instance for caching graphql data
