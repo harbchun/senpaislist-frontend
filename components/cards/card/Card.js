@@ -21,10 +21,7 @@ function Card({ title, broadcastTime, nextBroadcast, imgUrl, genres, score, expa
                 <p className={style.title}>{title}</p>
                 <Drawer genres={genres} />
             </div>
-            <Countdown 
-                broadcastTime={broadcastTime}
-                nextBroadcast={nextBroadcast}
-            />
+            <Countdown broadcastTime={broadcastTime} nextBroadcast={nextBroadcast} />
         </div>
     )
 }

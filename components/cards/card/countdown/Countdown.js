@@ -23,9 +23,7 @@ function Countdown({ broadcastTime, nextBroadcast }) {
         if (broadcastTime === 'N/A' || broadcastTime === 'unknown') {
             broadcastTime = '-'
         }
-        return <p className={style.countdown}>
-            {broadcastTime}
-        </p>
+        return <p className={style.countdown}>{broadcastTime}</p>
     }
 
     return (
