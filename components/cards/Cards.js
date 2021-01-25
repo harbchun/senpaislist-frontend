@@ -9,7 +9,7 @@ import { initStore, withRematch } from '~/rematch'
 import style from '~/styles/cards.module.sass'
 
 function Cards({ year, season }) {
-    const { data, loading } = serviceHooks.anime.fetchAnime(year, season)
+    const { data, loading } = serviceHooks.anime.fetchAnime(year, season.toLowerCase())
 
     const skeletonCards = (
         <>
