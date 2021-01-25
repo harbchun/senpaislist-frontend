@@ -39,8 +39,9 @@ function Cards({ year, season }) {
                     <Card
                         title={anime.title}
                         broadcastTime={anime.broadcast_time}
+                        nextBroadcast={anime.next_broadcast}
                         imgUrl={anime.image_url}
-                        genres={anime.genre}
+                        genres={anime.genres}
                         score={anime.score}
                         key={anime.title}
                     />

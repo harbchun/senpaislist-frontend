@@ -3,15 +3,14 @@ import PropTypes from 'prop-types'
 
 import style from '~/styles/card.module.sass'
 
-function Countdown({ broadcastTime }) {
-    const timeString = 'Wed, 08 Jan 2021 08:07:06 +0900'
+function Countdown({ broadcastTime, nextBroadcast }) {
     const [days, setDays] = useState(0)
     const [hours, setHours] = useState(0)
     const [minutes, setMinutes] = useState(0)
     const [seconds, setSeconds] = useState(0)
 
     setInterval(function () {
-        const broadcastDate = new Date(timeString)
+        const broadcastDate = new Date(nextBroadcast)
         const currentDate = new Date()
         const difference = broadcastDate - currentDate
         setDays(Math.floor(difference / (1000 * 60 * 60 * 24)))
@@ -20,15 +19,22 @@ function Countdown({ broadcastTime }) {
         setSeconds(Math.floor((difference % (1000 * 60)) / 1000))
     }, 1000)
 
+    if (nextBroadcast == 'N/A' || seconds < 0) {
+        return <p className={style.countdown}>
+            {broadcastTime}
+        </p>
+    }
+
     return (
         <p className={style.countdown}>
-            EP11: {days}d {hours}h {minutes}m {seconds}s
+            {days}d {hours}h {minutes}m {seconds}s
         </p>
     )
 }
 
 Countdown.propTypes = {
-    broadcastTime: PropTypes.string
+    broadcastTime: PropTypes.string,
+    nextBroadcast: PropTypes.string
 }
 
 export default Countdown
