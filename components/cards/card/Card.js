@@ -6,7 +6,7 @@ import Drawer from '~/components/cards/card/drawer/Drawer'
 
 import style from '~/styles/card.module.sass'
 
-function Card({ title, broadcastTime, imgUrl, genres, score, expandedView }) {
+function Card({ title, broadcastTime, nextBroadcast, imgUrl, genres, score, expandedView }) {
     return (
         <div className={`${style.card} ${expandedView ? style.expanded : ''}`}>
             <div role="presentation" className={`${style.cardBody}`}>
@@ -21,7 +21,7 @@ function Card({ title, broadcastTime, imgUrl, genres, score, expandedView }) {
                 <p className={style.title}>{title}</p>
                 <Drawer genres={genres} />
             </div>
-            <Countdown />
+            <Countdown broadcastTime={broadcastTime} nextBroadcast={nextBroadcast} />
         </div>
     )
 }
@@ -29,6 +29,7 @@ function Card({ title, broadcastTime, imgUrl, genres, score, expandedView }) {
 Card.propTypes = {
     title: PropTypes.string,
     broadcastTime: PropTypes.string,
+    nextBroadcast: PropTypes.string,
     score: PropTypes.string,
     imgUrl: PropTypes.string,
     genres: PropTypes.array,

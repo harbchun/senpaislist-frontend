@@ -2,7 +2,7 @@ import serviceHooks from '~/services'
 
 const ANIME = {
   state: {
-    year: 2019,
+    year: 2021,
     season: 'Winter',
     animeList: [],
     filters: [],
