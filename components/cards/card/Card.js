@@ -6,7 +6,16 @@ import Drawer from '~/components/cards/card/drawer/Drawer'
 
 import style from '~/styles/card.module.sass'
 
-function Card({ title, broadcastTime, nextBroadcast, imgUrl, genres, score, expandedView, description }) {
+function Card({
+    title,
+    broadcastTime,
+    nextBroadcast,
+    imgUrl,
+    genres,
+    score,
+    expandedView,
+    description
+}) {
     return (
         <div className={`${style.card} ${expandedView ? style.expanded : ''}`}>
             <div role="presentation" className={`${style.cardBody}`}>
@@ -19,10 +28,7 @@ function Card({ title, broadcastTime, nextBroadcast, imgUrl, genres, score, expa
                 </div>
                 <img src={imgUrl} alt="thumbnail" className={style.thumbnail} />
                 <p className={style.title}>{title}</p>
-                <Drawer 
-                genres={genres}
-                description={description}
-                />
+                <Drawer genres={genres} description={description} />
             </div>
             <Countdown broadcastTime={broadcastTime} nextBroadcast={nextBroadcast} />
         </div>
@@ -36,7 +42,8 @@ Card.propTypes = {
     score: PropTypes.string,
     imgUrl: PropTypes.string,
     genres: PropTypes.array,
-    expandedView: PropTypes.string.boolean
+    expandedView: PropTypes.string.boolean,
+    description: PropTypes.string
 }
 
 const mapState = (state) => ({

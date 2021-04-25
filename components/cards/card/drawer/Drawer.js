@@ -20,14 +20,13 @@ function Drawer({ genres, description }) {
                 <p className={style.number}>24 eps</p>
             </div>
             <p className={style.studio}>Mappa</p>
-            <p className={style.description}>
-                {description}
-            </p>
+            <p className={style.description}>{description}</p>
         </div>
     )
 }
 
 Drawer.propTypes = {
+    description: PropTypes.string,
     genres: PropTypes.array
 }
 
