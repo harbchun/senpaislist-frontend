@@ -28,10 +28,8 @@ const nextConfig = {
       default:
         console.error('No APP_ENV defined. Running without env variables')
     }
-    console.log(variables)
     return variables
   })(),
-  distDir: '.client-dist',
 }
 
 module.exports = {

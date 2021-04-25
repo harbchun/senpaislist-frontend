@@ -13,7 +13,7 @@ services:
     volumes:
       - "./:/home/node/app:rw"
       - "/home/node/app/node_modules"
-      - "/home/node/app/.client-dist"
+      - "/home/node/app/.next"
     networks:
       default:
         aliases:
