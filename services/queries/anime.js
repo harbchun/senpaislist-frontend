@@ -10,6 +10,7 @@ export const FETCH_ANIME = gql`
             image_url
             genres
             score
+            description
         }
     }
     `

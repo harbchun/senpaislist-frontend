@@ -10,7 +10,7 @@ import style from '~/styles/cards.module.sass'
 
 function Cards({ year, season }) {
     const { data, loading } = serviceHooks.anime.fetchAnime(year, season.toLowerCase())
-
+    console.log(data)
     const skeletonCards = (
         <>
             <CardSkeleton />
@@ -43,6 +43,7 @@ function Cards({ year, season }) {
                         imgUrl={anime.image_url}
                         genres={anime.genres}
                         score={anime.score}
+                        description={anime.description}
                         key={anime.title}
                     />
                 )

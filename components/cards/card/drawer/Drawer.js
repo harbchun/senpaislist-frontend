@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import style from '~/styles/card.module.sass'
 
-function Drawer({ genres }) {
+function Drawer({ genres, description }) {
     return (
         <div className={style.drawer}>
             <div className={style.genreContainer}>
@@ -21,10 +21,7 @@ function Drawer({ genres }) {
             </div>
             <p className={style.studio}>Mappa</p>
             <p className={style.description}>
-                The second season of Yakusoku no Neverland. Fifteen children escape Grace Field
-                House, a false paradise, hoping for a chance at freedom. Instead, they encounter
-                plants and animals they have never before seen, and are chased by demons. The
-                outside world is so
+                {description}
             </p>
         </div>
     )
