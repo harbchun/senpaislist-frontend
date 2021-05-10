@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 import Card from '~/components/cards/card/Card'
 import CardSkeleton from '~/components/cards/card/CardSkeleton'
@@ -10,7 +10,6 @@ import style from '~/styles/cards.module.sass'
 
 function Cards({ year, season }) {
     const { data, loading } = serviceHooks.anime.fetchAnime(year, season.toLowerCase())
-    console.log(data)
     const skeletonCards = (
         <>
             <CardSkeleton />

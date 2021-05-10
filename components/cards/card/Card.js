@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { initStore, withRematch } from '~/rematch'
 import Countdown from '~/components/cards/card/countdown/Countdown'
 import Drawer from '~/components/cards/card/drawer/Drawer'
+import { useInView } from 'react-intersection-observer'
 
 import style from '~/styles/card.module.sass'
 
@@ -16,8 +17,20 @@ function Card({
     expandedView,
     description
 }) {
+    const { ref, inView, entry } = useInView({
+        threshold: 0
+    })
+
+    const [seen, setSeen] = useState(false)
+
+    useEffect(() => {
+        if (inView) {
+            setSeen(true)
+        }
+    }, [inView])
+
     return (
-        <div className={`${style.card} ${expandedView ? style.expanded : ''}`}>
+        <div ref={ref} className={`${style.card} ${expandedView ? style.expanded : ''}`}>
             <div role="presentation" className={`${style.cardBody}`}>
                 <div className={style.cardHeader}>
                     <div className={style.score}>{score}</div>
@@ -26,7 +39,7 @@ function Card({
                         <div className={style.negative} />
                     </div>
                 </div>
-                <img src={imgUrl} alt="thumbnail" className={style.thumbnail} />
+                {seen ? <img src={imgUrl} alt="thumbnail" className={style.thumbnail} /> : null}
                 <p className={style.title}>{title}</p>
                 <Drawer genres={genres} description={description} />
             </div>
