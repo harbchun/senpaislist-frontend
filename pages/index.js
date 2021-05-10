@@ -7,10 +7,16 @@ import Cards from '~/components/cards/Cards'
 export default function Home() {
     return (
         <>
-            <MainLayout header={<Nav />}>
+            <MainLayout 
+            header={<Nav />}
+            tools={
                 <>
-                    <Calendar />
-                    <FilterBar />
+                        <Calendar />
+                        <FilterBar />
+                </>
+            }
+            >
+                <>
                     <Cards />
                 </>
             </MainLayout>

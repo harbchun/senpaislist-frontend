@@ -7,6 +7,7 @@ function MainLayout(props) {
     return (
         <>
             <div className="main-header">{props.header}</div>
+            <div className={style.tools}>{props.tools}</div>
             <div className={style.mainBody}>{props.children}</div>
         </>
     )
