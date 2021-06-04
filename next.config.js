@@ -15,14 +15,14 @@ const nextConfig = {
         console.log('Using production environment!')
         variables = {
           APP_ENV: 'production',
-          GRAPHQL_API_URL: 'https://senpaislist.com/v1/graphql',
+          GRAPHQL_API_URL: 'https://senpaislist.com/query',
         }
         break
       case 'development':
         console.log('Using development environment!')
         variables = {
           APP_ENV: 'development',
-          GRAPHQL_API_URL: 'http://localhost:8080/v1/graphql',
+          GRAPHQL_API_URL: 'http://localhost:5001/query',
         }
         break
       default:
