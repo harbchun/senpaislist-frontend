@@ -15,7 +15,8 @@ function MainLayout(props) {
 
 MainLayout.propTypes = {
     header: PropTypes.element,
-    children: PropTypes.element
+    children: PropTypes.element,
+    tools: PropTypes.element
 }
 
 export default MainLayout

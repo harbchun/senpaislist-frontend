@@ -5,8 +5,14 @@ import { initStore, withRematch } from '~/rematch'
 
 import style from '~/styles/calendar.module.sass'
 
-function Calendar({ year, season, expandedView, updateYear, updateSeason, updateExpandedView }) {
-    const [expand, useExpand] = useState(false)
+function Calendar({
+    year,
+    season,
+    updateYear,
+    updateSeason,
+    isComponentVisible,
+    setIsComponentVisible
+}) {
     const years = [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021]
     const seasons = ['Winter', 'Spring', 'Summer', 'Fall']
     const [currentYear, useCurrentYear] = useState(null)
@@ -22,8 +28,8 @@ function Calendar({ year, season, expandedView, updateYear, updateSeason, update
     }, [])
 
     useEffect(() => {
-        if (!expand && currentYear) scrollTo()
-    }, [expand, currentYear])
+        if (!isComponentVisible && currentYear) scrollTo()
+    }, [isComponentVisible, currentYear])
 
     useEffect(() => {
         if (currentYear) updateYear(currentYear)
@@ -77,12 +83,17 @@ function Calendar({ year, season, expandedView, updateYear, updateSeason, update
     return (
         <div className={style.calendarContainer}>
             <div className={style.expand}>
-                <button onClick={() => useExpand(!expand)} className={style.expandButton}>
+                <button
+                    onClick={() => setIsComponentVisible(!isComponentVisible)}
+                    className={style.expandButton}>
                     <div className={style.negative}></div>
-                    <div className={`${style.positive} ${expand ? style.active : ''}`}></div>
+                    <div
+                        className={`${style.positive} ${
+                            isComponentVisible ? style.active : ''
+                        }`}></div>
                 </button>
             </div>
-            <div className={`${style.calendar} ${expand ? style.expandCalendar : ''}`}>
+            <div className={`${style.calendar} ${isComponentVisible ? style.expandCalendar : ''}`}>
                 {calendarRows}
             </div>
         </div>
@@ -94,8 +105,8 @@ Calendar.propTypes = {
     season: PropTypes.string.isRequired,
     updateYear: PropTypes.func,
     updateSeason: PropTypes.func,
-    expandedView: PropTypes.bool,
-    updateExpandedView: PropTypes.func
+    isComponentVisible: PropTypes.func,
+    setIsComponentVisible: PropTypes.func
 }
 
 const mapState = (state) => ({
