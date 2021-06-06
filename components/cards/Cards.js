@@ -33,16 +33,16 @@ function Cards({ year, season }) {
 
     return (
         <div className={style.cards}>
-            {data.anime.map((anime) => {
+            {data.animes.map((anime) => {
                 return (
                     <Card
                         title={anime.title}
-                        broadcastTime={anime.broadcast_time}
-                        nextBroadcast={anime.next_broadcast}
+                        broadcastTime={anime.title}
+                        nextBroadcast={anime.title}
                         imgUrl={anime.image_url}
-                        genres={anime.genres}
-                        score={anime.score}
-                        description={anime.description}
+                        genres={anime.anime_genres}
+                        score={anime.statistic.score}
+                        description={anime.summary}
                         key={anime.title}
                     />
                 )

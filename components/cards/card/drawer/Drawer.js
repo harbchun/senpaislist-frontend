@@ -10,7 +10,7 @@ function Drawer({ genres, description }) {
                 {genres.map((genre) => {
                     return (
                         <p className={style.genre} key={genre}>
-                            {genre}
+                            {genre.genre}
                         </p>
                     )
                 })}
