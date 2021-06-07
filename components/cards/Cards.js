@@ -43,7 +43,7 @@ function Cards({ year, season }) {
                         genres={anime.anime_genres}
                         score={anime.statistic.score}
                         description={anime.summary}
-                        key={anime.title}
+                        key={anime.id}
                     />
                 )
             })}

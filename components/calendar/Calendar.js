@@ -2,69 +2,59 @@ import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import CalendarSkeleton from './CalendarSkeleton'
 import { initStore, withRematch } from '~/rematch'
+import { useSelector, useDispatch } from 'react-redux'
 
 import style from '~/styles/calendar.module.sass'
 
 function Calendar({
-    year,
-    season,
-    updateYear,
-    updateSeason,
     isComponentVisible,
     setIsComponentVisible
 }) {
-    const years = [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021]
-    const seasons = ['Winter', 'Spring', 'Summer', 'Fall']
-    const [currentYear, useCurrentYear] = useState(null)
-    const [currentSeason, useCurrentSeason] = useState(null)
+    const dispatch = useDispatch()
+    const year = useSelector((state) => state.anime.year)
+    const years = useSelector((state) => state.anime.years)
+    const season = useSelector((state) => state.anime.season)
+    const seasons = useSelector((state) => state.anime.seasons)
     const [currentRef, useCurrentRef] = useState(null)
     const calendarRefs = {}
     const loaded = true
 
     useEffect(() => {
-        useCurrentYear(year)
-        useCurrentSeason(season)
         useCurrentRef(calendarRefs[year])
     }, [])
 
     useEffect(() => {
-        if (!isComponentVisible && currentYear) scrollTo()
-    }, [isComponentVisible, currentYear])
-
-    useEffect(() => {
-        if (currentYear) updateYear(currentYear)
-    }, [currentYear])
-
-    useEffect(() => {
-        if (currentSeason) updateSeason(currentSeason)
-    }, [currentSeason])
+        if (!isComponentVisible && year) scrollTo()
+    }, [isComponentVisible, year, currentRef])
 
     const updateSelected = (year, season) => {
-        useCurrentYear(year)
-        useCurrentSeason(season)
+        dispatch.anime.updateSeason(season)
+        dispatch.anime.updateYear(year)
         useCurrentRef(calendarRefs[year])
     }
 
     const scrollTo = () => {
-        setTimeout(function () {
-            currentRef.scrollIntoView(false)
-        }, 200)
+        if (currentRef) {
+            setTimeout(function () {
+                currentRef.scrollIntoView(false)
+            }, 200)
+        }
     }
 
-    const calendarRows = years.map((year) => {
+    const calendarRows = years.map((yearValue) => {
         return (
-            <div className={style.row} key={year} ref={(e) => (calendarRefs[year] = e)}>
-                {seasons.map((season) => {
+            <div className={style.row} key={yearValue} ref={(e) => (calendarRefs[yearValue] = e)}>
+                {seasons.map((seasonValue) => {
                     return (
                         <div
                             role="presentation"
-                            key={`${year}-${season}`}
+                            key={`${yearValue}-${seasonValue}`}
                             className={`${style.cell} ${
-                                year === currentYear && currentSeason === season ? style.active : ''
+                                yearValue === year && seasonValue === season ? style.active : ''
                             }`}
-                            onClick={() => updateSelected(year, season)}>
-                            <p className={style.season}>{season}</p>
-                            <p className={style.year}>{year}</p>
+                            onClick={() => updateSelected(yearValue, seasonValue)}>
+                            <p className={style.season}>{seasonValue}</p>
+                            <p className={style.year}>{yearValue}</p>
                         </div>
                     )
                 })}
@@ -103,20 +93,8 @@ function Calendar({
 Calendar.propTypes = {
     year: PropTypes.number.isRequired,
     season: PropTypes.string.isRequired,
-    updateYear: PropTypes.func,
-    updateSeason: PropTypes.func,
     isComponentVisible: PropTypes.func,
     setIsComponentVisible: PropTypes.func
 }
 
-const mapState = (state) => ({
-    year: state.anime.year,
-    season: state.anime.season
-})
-
-const mapDispatch = (dispatch) => ({
-    updateYear: dispatch.anime.updateYear,
-    updateSeason: dispatch.anime.updateSeason
-})
-
-export default withRematch(initStore, mapState, mapDispatch)(Calendar)
+export default withRematch(initStore)(Calendar)
