@@ -1,5 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import FilterDropdown from '~/components/filterBar/filterDropdown/FilterDropdown'
+import FilterCheckbox from '~/components/filterBar/filterCheckbox/FilterCheckbox'
+import FilterSearch from '~/components/filterBar/filterSearch/FilterSearch'
 import { initStore, withRematch } from '~/rematch'
 
 import style from '~/styles/filterBar.module.sass'
@@ -8,27 +11,16 @@ function FilterBar({ expandedView, updateExpandedView }) {
     return (
         <div className={style.filterBarContainer}>
             <div className={style.filterBar}>
-                <div className={style.expandView}>
-                    Expanded View
-                    <button
-                        className={style.expandOption}
-                        onClick={() => updateExpandedView(!expandedView)}></button>
-                </div>
-                <div className={style.sortBy}>
-                    Sort By
-                    <div className={style.sortByOptions}></div>
-                </div>
-                <div className={style.search}>
-                    Search
-                    <div className={style.searchBar}></div>
-                </div>
+                <FilterCheckbox />
+                <FilterDropdown />
+                <FilterSearch />
             </div>
         </div>
     )
 }
 
 FilterBar.propTypes = {
-    expandedView: PropTypes.string.boolean,
+    expandedView: PropTypes.bool,
     updateExpandedView: PropTypes.func
 }
 

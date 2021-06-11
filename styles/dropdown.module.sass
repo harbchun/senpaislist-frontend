@@ -1,0 +1,72 @@
+@import global
+
+.spaceBetween
+    position: absolute
+    left: 160px
+    top: 0px
+    width: 5px
+    height: 100%
+    display: none
+
+    &.spaceBetweenActive
+        display: block
+
+.dropdown
+    position: relative
+    user-select: none
+    cursor: pointer
+    font-family: $pt-sans
+    color: white
+
+    .subDropdown
+        position: absolute
+        left: 165px
+        display: none
+        border-radius: 7px
+        background-color: #161616
+        overflow: hidden
+        color: white
+        transform: translateY(-20px)
+
+        &.subDropdownActive
+            display: block
+
+    .selected
+        display: flex
+        align-items: center
+        border: 1px solid #3b2358
+        height: 35px
+        width: 160px
+        border-radius: 7px
+        padding-left: 10px
+        text-overflow: ellipsis
+        background-color: #131313
+        color: white
+
+        &:hover
+            border: 1px solid #7146a7
+
+    .selectContainer
+        background-color: #161616
+        border-radius: 7px
+        max-height: 0px
+        position: absolute
+        display: none
+
+        &.selectContainerActive
+            top: 50px
+            max-height: 500px
+            display: block
+
+
+        .select
+            display: flex
+            align-items: center
+            height: 40px
+            width: 150px
+            padding-left: 10px
+            text-overflow: ellipsis
+            overflow: hidden
+
+            &.selectActive
+                color: #7146a5
