@@ -3,11 +3,12 @@ import { FETCH_ANIME } from './queries/anime'
 import initApollo from '~/global'
 
 const animeHooks = {
-  fetchAnime: (year, season) =>
+  fetchAnime: (year, season, orderBy) =>
     useQuery(FETCH_ANIME, { client: initApollo(), 
       variables: {
         year,
-        season
+        season,
+        orderBy
       }
     })
 }
