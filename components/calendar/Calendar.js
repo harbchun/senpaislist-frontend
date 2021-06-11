@@ -6,10 +6,7 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import style from '~/styles/calendar.module.sass'
 
-function Calendar({
-    isComponentVisible,
-    setIsComponentVisible
-}) {
+function Calendar({ isComponentVisible, setIsComponentVisible }) {
     const dispatch = useDispatch()
     const year = useSelector((state) => state.anime.year)
     const years = useSelector((state) => state.anime.years)
@@ -91,9 +88,9 @@ function Calendar({
 }
 
 Calendar.propTypes = {
-    year: PropTypes.number.isRequired,
-    season: PropTypes.string.isRequired,
-    isComponentVisible: PropTypes.func,
+    year: PropTypes.number,
+    season: PropTypes.string,
+    isComponentVisible: PropTypes.bool,
     setIsComponentVisible: PropTypes.func
 }
 

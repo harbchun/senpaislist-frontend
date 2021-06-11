@@ -1,15 +1,38 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import Card from '~/components/cards/card/Card'
 import CardSkeleton from '~/components/cards/card/CardSkeleton'
 import serviceHooks from '~/services'
 import PropTypes from 'prop-types'
+import { useSelector, useDispatch } from 'react-redux'
 import { initStore, withRematch } from '~/rematch'
-
+import sortQueryBuilder from '~/helpers/sortQueryBuilder'
 import style from '~/styles/cards.module.sass'
 
 function Cards({ year, season }) {
-    const { data, loading } = serviceHooks.anime.fetchAnime(year, season.toLowerCase())
+    const dispatch = useDispatch()
+    const sort = useSelector((state) => state.anime.sort)
+    const textSearch = useSelector((state) => state.anime.text)
+    const { data, loading, refetch } = serviceHooks.anime.fetchAnime(
+        year,
+        season.toLowerCase(),
+        sortQueryBuilder(sort)
+    )
+
+    useEffect(() => {
+        if (data && data.animes) {
+            dispatch.anime.updateAnimeList(data.animes)
+        }
+    }, [data])
+
+    useEffect(() => {
+        if (sort) {
+            refetch({variables: {year: year,
+                season: season.toLowerCase(),
+                orderBy: sortQueryBuilder(sort)}})
+        }
+    }, [sort])
+
     const skeletonCards = (
         <>
             <CardSkeleton />
@@ -31,9 +54,11 @@ function Cards({ year, season }) {
         return <div className={style.cards}>No anime found</div>
     }
 
+    const searchFilter = data.animes.filter(anime => anime.title.toLowerCase().includes(textSearch.toLowerCase()))
+
     return (
         <div className={style.cards}>
-            {data.animes.map((anime) => {
+            {searchFilter.map((anime) => {
                 return (
                     <Card
                         title={anime.title}
