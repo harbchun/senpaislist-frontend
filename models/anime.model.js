@@ -1,9 +1,11 @@
+import currentSeason from "~/helpers/currentSeason"
+
 const ANIME = {
   state: {
-    years: [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021],
+    years: [],
     seasons: ['Winter', 'Spring', 'Summer', 'Fall'],
-    year: 2021,
-    season: 'Winter',
+    year: new Date().getFullYear(),
+    season: currentSeason(),
     animeList: [],
     filters: [],
     sort: 'Popularity:Descending',
@@ -17,6 +19,14 @@ const ANIME = {
           ...state,
           year: payload
         }
+    },
+    updateYears(state, payload) {
+      const yearList = payload.years.map(year => year.year)
+
+      return {
+        ...state,
+        years: yearList
+      }
     },
     updateSeason(state, payload) {
         return {

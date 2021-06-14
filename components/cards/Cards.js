@@ -27,9 +27,13 @@ function Cards({ year, season }) {
 
     useEffect(() => {
         if (sort) {
-            refetch({variables: {year: year,
-                season: season.toLowerCase(),
-                orderBy: sortQueryBuilder(sort)}})
+            refetch({
+                variables: {
+                    year: year,
+                    season: season.toLowerCase(),
+                    orderBy: sortQueryBuilder(sort)
+                }
+            })
         }
     }, [sort])
 
@@ -54,7 +58,9 @@ function Cards({ year, season }) {
         return <div className={style.cards}>No anime found</div>
     }
 
-    const searchFilter = data.animes.filter(anime => anime.title.toLowerCase().includes(textSearch.toLowerCase()))
+    const searchFilter = data.animes.filter((anime) =>
+        anime.title.toLowerCase().includes(textSearch.toLowerCase())
+    )
 
     return (
         <div className={style.cards}>

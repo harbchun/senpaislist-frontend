@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import CalendarSkeleton from './CalendarSkeleton'
+import serviceHooks from '~/services'
 import { initStore, withRematch } from '~/rematch'
 import { useSelector, useDispatch } from 'react-redux'
 
@@ -16,9 +17,15 @@ function Calendar({ isComponentVisible, setIsComponentVisible }) {
     const calendarRefs = {}
     const loaded = true
 
+    const { data: yearData } = serviceHooks.years.fetchYears()
+
     useEffect(() => {
         useCurrentRef(calendarRefs[year])
     }, [])
+
+    useEffect(() => {
+        if (yearData && yearData.years) dispatch.anime.updateYears(yearData)
+    }, [yearData])
 
     useEffect(() => {
         if (!isComponentVisible && year) scrollTo()
@@ -80,7 +87,9 @@ function Calendar({ isComponentVisible, setIsComponentVisible }) {
                         }`}></div>
                 </button>
             </div>
-            <div className={`${style.calendar} ${isComponentVisible ? style.expandCalendar : ''}`}>
+            <div
+                className={`${style.calendar} ${isComponentVisible ? style.expandCalendar : ''}`}
+                style={isComponentVisible ? { height: `${years.length * 88}px` } : {}}>
                 {calendarRows}
             </div>
         </div>
