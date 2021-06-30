@@ -5,8 +5,8 @@ import { useInView } from 'react-intersection-observer'
 
 import style from '~/styles/expandedCard.module.sass'
 
-function ExpandedCard({ title, broadcastTime, nextBroadcast, imgUrl, genres, score, description }) {
-    const { ref, inView, entry } = useInView({
+function ExpandedCard({ title, imgUrl, genres, score, description }) {
+    const { ref, inView } = useInView({
         threshold: 0
     })
 

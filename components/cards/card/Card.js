@@ -4,8 +4,8 @@ import { useInView } from 'react-intersection-observer'
 
 import style from '~/styles/card.module.sass'
 
-function Card({ title, broadcastTime, nextBroadcast, imgUrl, score, genres }) {
-    const { ref, inView, entry } = useInView({
+function Card({ title, imgUrl, score, genres }) {
+    const { ref, inView } = useInView({
         threshold: 0
     })
 
@@ -47,10 +47,9 @@ Card.propTypes = {
     title: PropTypes.string,
     broadcastTime: PropTypes.string,
     nextBroadcast: PropTypes.string,
-    score: PropTypes.string,
+    score: PropTypes.number,
     imgUrl: PropTypes.string,
     genres: PropTypes.array,
-    expandedView: PropTypes.string.boolean,
     description: PropTypes.string
 }
 

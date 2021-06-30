@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import FilterDropdown from '~/components/filterBar/filterDropdown/FilterDropdown'
 import FilterCheckbox from '~/components/filterBar/filterCheckbox/FilterCheckbox'
 import FilterSearch from '~/components/filterBar/filterSearch/FilterSearch'
