@@ -1,164 +1,89 @@
 @import global
 
 .card
+    display: inline-block
+    position: relative
     background-color: #272727
-    margin: 30px
-    width: 210px
     border-radius: 5px
     overflow: hidden
+    height: 330px
+    width: 210px
+    margin: 10px
 
-    &.expanded
-        width: 460px
-
-    .cardBody
+    .thumbnail
+        object-fit: cover
+        width: 100%
         height: 300px
-        width: 210px
-        position: relative
+        border-radius: 0px 0px 10px 10px
 
-        .thumbnail
-            object-fit: cover
-            width: 100%
-            height: 100%
-
-        .title
-            position: absolute
-            bottom:0
-            color: white
-            padding-top: 0.3em
-            padding-bottom: 0.3em
-            background-color: #000000ce
-            width: 100%
-            font-family: $open-sans
-            text-align: center
-
-        .drawer
-            position: absolute
-            top: 0
-            left: 210px
-            width: 250px
-            height: 300px
-
-            .genreContainer
-                width: 100%
-                height: 30px
-                overflow: hidden
-                display: flex
-                justify-content: center
-                flex-wrap: wrap
-                border-bottom: 1px solid #20202048
-                background-color: #966dc9
-
-                .genre
-                    color: white
-                    font-family: $open-sans
-                    font-size: 12px
-                    line-height: 18px
-                    height: 20px
-                    margin: 5px 0.5em
-
-            .studio
-                color: white
-                font-family: $pt-sans
-                font-size: 17px
-                line-height: 22px
-                text-align: center
-                height: 25px
-                background-color: #222222
-                border-bottom: 1px solid #202020
-
-            .airingInfo
-                display: flex
-                color: white
-                font-family: $pt-sans
-                font-size: 14px
-                line-height: 22px
-                text-align: center
-                height: 25px
-                background-color: #222222
-                border-bottom: 1px solid #202020
-
-                .status
-                    margin-right: auto
-                    margin-left: auto
-
-                .number
-                    margin-right: auto
-                    margin-left: auto
-
-            .description
-                color: white
-                font-family: $pt-sans
-                padding: 1em
-                font-size: 14px
-                line-height: 1.4
-                overflow-y: scroll
-                height: calc(300px - 111px)
-
-                &::-webkit-scrollbar
-                    width:  5px
-                    height: 5px
-
-                &::-webkit-scrollbar-thumb 
-                    background: $gray
-
-                &::-webkit-scrollbar-track 
-                    background: $background-alt
-
-    .cardHeader
+    .overlay
         position: absolute
-        top: 0
-        height: 30px
-        width: 210px
         display: flex
-        align-items: center
+        flex-direction: column
+        top: 0
+        height: 100%
+        width: 100%
+        background: rgb(35,30,38)
+        background: linear-gradient(0deg, rgba(35,30,38,1) 11%, rgba(35,30,38,0.9426237824675324) 18%, rgba(35,30,38,0.7088575487012987) 28%, rgba(0,0,0,0) 47%)            
 
         .score
+            width: 30px
             color: white
-            font-family: $open-sans
-            font-size: 13px
-            line-height: 18px
-            height: 20px
-            width: 50px
-            border-radius: 20px
-            text-align: center
-            margin: 0 0.5em
-            background-color: #9f5bf1
-
-        .addButton
-            position: relative
-            border: 1px solid white
+            font-family: $pt-sans
+            background: #363636c9
             border-radius: 50px
-            width: 19px
-            height: 19px
-            background-color: #00000025
-            margin: 0 0.5em 0 auto
+            font-size: 12px
+            text-align: center
+            padding-right: 4px
+            padding-left: 4px
+            padding-bottom: 3px
+            padding-top: 3px
+            margin: 5px
 
-            .negative
-                position: absolute
-                height: 1px
-                width: 9px
-                background-color: white
-                top: 9px
-                left: 5px
+            .star
+                height: 10px
+                margin-right: 3px
 
-            .positive
-                transition: transform 0.2s ease-out
-                position: absolute
-                height: 9px
-                width: 1px
-                background-color: white
-                top: 5px
-                left: 9px
+        .title
+            color: white
+            font-family: $pt-sans
+            margin-top: auto
+            margin-left: 5px
+            margin-bottom: 3px
+            font-size: 16px
 
-    .countdown
-        color: white
-        padding-top: 0.5em
-        padding-bottom: 0.5em
-        background-color: #2d2d2d
-        border-bottom: 1px solid #0000002c
-        width: 100%
-        font-family: $open-sans
-        text-align: center
+        .subtitle
+            color: #777777
+            font-family: $pt-sans
+            margin-left: 5px
+            margin-bottom: 5px
+            font-size: 14px
+
+        .genres
+            display: flex
+            margin-bottom: 5px
+
+            .genre
+                color: #9e5bf1
+                font-family: $pt-sans
+                font-size: 11px
+                margin: 5px
+                padding: 2px 5px
+                border: 1px solid #9e5bf1
+                border-radius: 10px 
+
+        .episodes
+            color: #6d6d6d
+            font-family: $pt-sans
+            margin-bottom: 5px
+            margin-left: 5px
+            font-size: 13px
+        
+        .countdown
+            color: white
+            font-family: $pt-sans
+            margin-bottom: 15px
+            margin-left: 5px
     
 .cardSkeleton
     position: relative
@@ -230,3 +155,59 @@
         left: -150px
     to
         left: 100%
+
+@media (max-width: 710px)
+
+@media (min-width: 399px) and (max-width: 710px)
+    .card
+        height: 250px
+        width: 175px
+        margin: 5px
+
+        .thumbnail
+            height: 250px
+
+        .overlay
+            background: rgb(35,30,38)
+            background: linear-gradient(0deg, rgba(35,30,38,1) 11%, rgba(35,30,38,0.9426237824675324) 18%, rgba(35,30,38,0.7088575487012987) 28%, rgba(0,0,0,0) 67%)
+            .title
+                color: white
+                font-family: $pt-sans
+                margin-top: auto
+                margin-left: 5px
+                margin-bottom: 3px
+                font-size: 13px
+
+            .subtitle
+                color: #777777
+                font-family: $pt-sans
+                margin-left: 5px
+                margin-bottom: 5px
+                font-size: 10px
+
+            .genres
+                display: flex
+                margin-bottom: 5px
+
+                .genre
+                    color: #9e5bf1
+                    font-family: $pt-sans
+                    font-size: 8px
+                    margin: 5px
+                    padding: 2px 5px
+                    border: 1px solid #9e5bf1
+                    border-radius: 10px 
+
+            .episodes
+                color: #6d6d6d
+                font-family: $pt-sans
+                margin-bottom: 5px
+                margin-left: 5px
+                font-size: 10px
+            
+            .countdown
+                color: white
+                font-size: 13px
+                font-family: $pt-sans
+                margin-bottom: 15px
+                margin-left: 5px

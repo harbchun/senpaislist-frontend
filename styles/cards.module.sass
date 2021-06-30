@@ -1,6 +1,57 @@
-.cards
-    display: flex
-    flex-wrap: wrap
-    justify-content: center
-    margin-left: auto
-    margin-right: auto
+.simpleCardsGrid
+    display: grid
+    
+    .cards
+        grid-column-start: 2
+        grid-column-end: 3
+
+.detailedCardsGrid
+    display: grid
+
+    .cards
+        grid-column-start: 2
+        grid-column-end: 3
+
+@media (max-width: 399px)
+    .simpleCardsGrid
+        grid-template-columns: minmax(0px, auto) 230px minmax(0px, auto)
+
+@media (min-width: 400px)
+    .simpleCardsGrid
+        grid-template-columns: minmax(0px, auto) 370px minmax(0px, auto)
+
+@media (min-width: 575px)
+    .simpleCardsGrid
+        grid-template-columns: minmax(0px, auto) 555px minmax(0px, auto)
+
+@media (min-width: 710px)
+    .simpleCardsGrid
+        grid-template-columns: minmax(0px, auto) 690px minmax(0px, auto)
+
+@media (min-width: 940px)
+    .simpleCardsGrid
+        grid-template-columns: minmax(0px, auto) 920px minmax(0px, auto)
+
+@media (min-width: 1170px)
+    .simpleCardsGrid
+        grid-template-columns: minmax(0px, auto) 1150px minmax(0px, auto)
+
+@media (min-width: 1400px)
+    .simpleCardsGrid
+        grid-template-columns: minmax(0px, auto) 1380px minmax(0px, auto)
+        
+@media (min-width: 1630px)
+    .simpleCardsGrid
+        grid-template-columns: minmax(0px, auto) 1610px minmax(0px, auto)
+
+@media (min-width: 320px)
+    .detailedCardsGrid
+        grid-template-columns: minmax(0px, auto) 100% minmax(0px, auto)
+
+@media (min-width: 1440px)
+    .detailedCardsGrid
+        grid-template-columns: minmax(0px, auto) 1440px minmax(0px, auto)
+
+@media (min-width: 1920px)
+    .detailedCardsGrid
+        grid-template-columns: minmax(0px, auto) 1920px minmax(0px, auto)

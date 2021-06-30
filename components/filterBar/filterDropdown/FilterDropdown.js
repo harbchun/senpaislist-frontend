@@ -1,6 +1,5 @@
 import React from 'react'
 import Dropdown from '~/components/public/dropdown/Dropdown'
-import { initStore, withRematch } from '~/rematch'
 import { useSelector, useDispatch } from 'react-redux'
 import style from '~/styles/filterDropdown.module.sass'
 
@@ -23,4 +22,4 @@ function FilterDropdown() {
     )
 }
 
-export default withRematch(initStore)(FilterDropdown)
+export default FilterDropdown

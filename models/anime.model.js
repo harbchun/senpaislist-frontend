@@ -1,4 +1,7 @@
+import sortQueryBuilder from '~/helpers/sortQueryBuilder'
+import validateTrackerUrl from '~/helpers/validateTrackerUrl'
 import currentSeason from "~/helpers/currentSeason"
+import serviceFetch from '~/services/fetch'
 
 const ANIME = {
   state: {
@@ -8,9 +11,11 @@ const ANIME = {
     season: currentSeason(),
     animeList: [],
     filters: [],
-    sort: 'Popularity:Descending',
+    orders: ['Popularity', 'Score', 'Title'],
+    sort: 'Popularity',
     text: '',
-    expandedView: false
+    views: ['Detailed', 'Simple'],
+    view: 'Simple'
   },
   reducers: {
     // handle state changes with pure functions
@@ -21,8 +26,7 @@ const ANIME = {
         }
     },
     updateYears(state, payload) {
-      const yearList = payload.years.map(year => year.year)
-
+      const yearList = payload.map(year => year.year)
       return {
         ...state,
         years: yearList
@@ -52,14 +56,39 @@ const ANIME = {
         text: payload
       }
     },
-    updateExpandedView(state, payload) {
+    updateView(state, payload) {
       return {
         ...state,
-        expandedView: payload
+        view: payload
       }
     },
   },
   effects: dispatch => ({
+    async fetchAnimes({year, season, orderBy}) {
+      const animes = await serviceFetch.anime.fetchAnimes({year, season, orderBy})
+      dispatch.anime.updateAnimeList(animes)
+    },
+    async fetchYears() {
+      const years = await serviceFetch.years.fetchYears()
+      dispatch.anime.updateYears(years)
+    },
+    async trackerSetup(query, state) {
+      let year = state.anime.year
+      let season = state.anime.season
+      const years = state.anime.years
+      const splitQuery = validateTrackerUrl(query, years, state.anime.seasons)
+      if (splitQuery) {
+        year = splitQuery[0]
+        season = splitQuery[1]
+      }
+
+      year = parseInt(year)
+      season = season.toLowerCase()
+
+      dispatch.anime.updateYear(year)
+      dispatch.anime.updateSeason(season)
+      await dispatch.anime.fetchAnimes({year, season, orderBy: sortQueryBuilder(state.anime.sort)})
+    },
   })
 }
 

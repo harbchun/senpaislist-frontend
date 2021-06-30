@@ -1,0 +1,75 @@
+@import global
+
+.drawer
+    display: grid
+    grid-template-rows: 0.3fr 2fr 0.3fr 0.3fr
+
+    .title
+        color: white
+        font-family: $pt-sans
+        margin-left: 10px
+        font-size: 16px
+        margin-top: 5px
+
+        &.titleS
+            font-size: 12px
+
+    .subtitle
+        color: #aaaaaa
+        font-family: $pt-sans
+        margin-left: 10px
+        font-size: 12px
+
+    .description
+        margin-top: 10px
+        color: #777777
+        font-family: $pt-sans
+        margin-left: 10px
+        margin-right: 5px
+        font-size: 12px
+
+        &.activeDescription
+            margin-bottom: 5px
+            overflow-y: auto
+            grid-row-start: 2
+            grid-row-end: 5
+    .genres
+        display: flex
+        margin-left: 5px
+
+        &.hidden
+            display: none
+
+        .genre
+            color: #9e5bf1
+            font-family: $pt-sans
+            font-size: 10px
+            margin: 5px
+            padding: 2px 5px
+            border: 1px solid #9e5bf1
+            border-radius: 10px 
+    
+    .countdownContainer
+        background: #1c191d
+
+        &.hidden
+            display: none
+
+        .episodes
+            color: #6d6d6d
+            font-family: $pt-sans
+            margin-top: 5px
+            margin-bottom: 5px
+            margin-left: 10px
+            font-size: 11px
+
+        .countdown
+            color: white
+            font-family: $pt-sans
+            font-size: 17px
+            margin-bottom: 5px
+            margin-left: 10px
+
+@media (max-width: 449px)
+    .drawer
+        height: 190px

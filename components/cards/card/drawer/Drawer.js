@@ -1,13 +1,51 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
+import useResize from '~/helpers/hooks/element-size'
 
-import style from '~/styles/card.module.sass'
+import style from '~/styles/drawer.module.sass'
 
-function Drawer({ genres, description }) {
+function Drawer({ title, genres, description }) {
+    const { ref, width } = useResize()
+    const [activeDescription, setActiveDescription] = useState(false)
+    const [cutDescription, setCutDescription] = useState(description)
+    const [cutTitle, setCutTitle] = useState(false)
+    const [cutGenres, setCutGenres] = useState(genres)
+
+    useEffect(() => {
+        if (width < 255) {
+            setCutDescription(
+                description.slice(0, 110) + `${description.length < 110 ? '' : '...'}`
+            )
+            setCutGenres(genres.slice(0, 2))
+            if (title.length > 44) {
+                setCutTitle(true)
+            }
+        } else {
+            setCutDescription(description)
+            setCutGenres(genres)
+            if (title.length > 44) {
+                setCutTitle(false)
+            }
+        }
+    }, [width])
+
     return (
-        <div className={style.drawer}>
-            <div className={style.genreContainer}>
-                {genres.map((genre) => {
+        <div className={`${style.drawer} ${activeDescription ? style.hidden : ''}`}>
+            <div>
+                <p className={`${style.title} ${cutTitle ? style.titleS : ''}`}>{title}</p>
+                <p className={style.subtitle}>bones • manga</p>
+            </div>
+            <p
+                ref={ref}
+                className={`${style.description} ${
+                    activeDescription ? style.activeDescription : ''
+                }`}
+                onMouseEnter={() => setActiveDescription(true)}
+                onMouseLeave={() => setActiveDescription(false)}>
+                {activeDescription ? description : cutDescription}
+            </p>
+            <div className={`${style.genres} ${activeDescription ? style.hidden : ''}`}>
+                {cutGenres.map((genre) => {
                     return (
                         <p className={style.genre} key={genre.genre}>
                             {genre.genre}
@@ -15,19 +53,18 @@ function Drawer({ genres, description }) {
                     )
                 })}
             </div>
-            <div className={style.airingInfo}>
-                <p className={style.status}>Ongoing</p>
-                <p className={style.number}>24 eps</p>
+            <div className={`${style.countdownContainer} ${activeDescription ? style.hidden : ''}`}>
+                <p className={style.episodes}>ep 2 of 24 airing in</p>
+                <p className={style.countdown}>10 Days 8 Hours</p>
             </div>
-            <p className={style.studio}>Mappa</p>
-            <p className={style.description}>{description}</p>
         </div>
     )
 }
 
 Drawer.propTypes = {
     description: PropTypes.string,
-    genres: PropTypes.array
+    genres: PropTypes.array,
+    title: PropTypes.string
 }
 
 export default Drawer

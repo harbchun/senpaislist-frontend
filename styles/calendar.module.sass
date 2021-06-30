@@ -1,116 +1,28 @@
 @import global
 
 .calendarContainer
-    display: grid
-    grid-template-columns: 1fr 30px 540px 1fr
-    flex-direction: column
-    padding-top: 40px
+    display: flex
+    justify-content: center
+    align-items: center
+    margin: 3em 0 2em 0
 
-    .expand
-        display: flex
-        grid-column-start: 2
-        grid-column-end: 3
-        margin-left: auto
-        margin-top: 35px
-        margin-bottom: auto
-
-        .calendarTitle
-            color: white
-            font-family: $open-sans
-            font-weight: 400
-            font-size: 20px
-            margin-left: 0.5em
-
-        .expandButton
-            height: 19px
-            width: 19px
-            background-color: #9E5BF1
-            border: none
-            outline: none
-            border-radius: 50px
-            position: relative
-            cursor: pointer
-
-            .negative
-                position: absolute
-                height: 1px
-                width: 11px
-                background-color: white
-                top: 9px
-                left: 4px
-
-            .positive
-                transition: transform 0.2s ease-out
-                position: absolute
-                height: 11px
-                width: 1px
-                background-color: white
-                top: 4px
-                left: 9px
-
-            .active
-                transform: rotate(90deg)
-    
     .calendar
-        transition: height 0.2s ease-out
-        height: 88px
-        width: 520px
-        overflow-y: hidden
-        grid-column-start: 3
-        grid-column-end: 4
-        justify-self: center
-        scroll-behavior: smooth
+        background: #1a1a1a
+        height: 75px
+        display: flex
+        border-radius: 10px
+        border: 1px solid $primary-purple
 
-        .row
-            display: flex
-            margin-left: 1em
+        .divider
+            background: #282828
+            width: 1px
+            height: 60%
+            margin-top: auto
+            margin-bottom: auto
 
-            .cell
-                margin: 20px
-                cursor: pointer
-
-                .season
-                    color: white
-                    font-family: $pt-sans
-                    font-size: 30px
-                    user-select: none
-
-                .year
-                    color: white
-                    font-family: $open-sans
-                    font-size: 18px
-                    text-align: center
-                    user-select: none
-
-                &.active
-                    .season
-                        color: $primary-purple
-                    .year
-                        color: $primary-purple
-
-                &:hover
-                    .season
-                        color: $primary-purple
-
-                    .year
-                        color: $primary-purple
-
-        &::-webkit-scrollbar
-            width:  5px
-            height: 5px
-
-        &::-webkit-scrollbar-thumb 
-            background: $primary-green
-
-        &::-webkit-scrollbar-track 
-            background: $background-alt
-
-    & .expandCalendar
-        max-height: 352px
-        overflow-y: auto
 
 .calendarSkeleton
-    height: 88px
+    height: 51px
     width: 520px
     position: relative
     overflow: hidden
@@ -136,4 +48,12 @@
         left: -150px
     to
         left: 100%
-        
+
+@media (max-width: 700px)
+    .calendarContainer
+        margin: 1.5em 0 1em 0
+        .calendar
+            height: 60px
+
+            .orderDivider
+                display: none

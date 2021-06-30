@@ -1,0 +1,144 @@
+@import global
+
+.expandedCardContainer
+    display: inline-block
+    padding: 10px
+    width: 460px
+    height: 250px
+
+    .expandedCard
+        background-color: #221e23
+        border-radius: 5px
+        overflow: hidden
+        display: grid
+        grid-template-columns: 175px minmax(0px, auto)
+        position: relative
+
+        .thumbnail
+            object-fit: cover
+            width: 175px
+            height: 250px
+
+        .score
+            position: absolute
+            width: 30px
+            color: white
+            font-family: $pt-sans
+            background: #363636c9
+            border-radius: 50px
+            font-size: 12px
+            text-align: center
+            padding-right: 4px
+            padding-left: 4px
+            padding-bottom: 3px
+            padding-top: 3px
+            margin: 5px
+
+            .star
+                height: 10px
+                margin-right: 3px 
+
+    
+.cardSkeleton
+    position: relative
+    overflow: hidden
+    border-radius: 5px
+
+    &:before
+        content: ''
+        display: block
+        position: absolute
+        left: -150px
+        top: 0
+        height: 100%
+        width: 150px
+        background: linear-gradient(to right, transparent 0%, #353535 50%, transparent 100%)
+        animation: load 1s cubic-bezier(0.4, 0.0, 0.2, 1) infinite
+
+    .genreSkeleton
+        color: white
+        font-family: $open-sans
+        background-color: #353535
+        border-radius: 50px
+        font-size: 12px
+        line-height: 18px
+        padding: 0 1em
+        height: 15px
+        width:50px
+        margin: 0 0.5em
+
+    .addButtonSkeleton
+        position: relative
+        border-radius: 50px
+        width: 17px
+        height: 17px
+        background-color: #353535
+        margin: 0 0.5em 0 auto
+
+    .titleSkeleton
+        position: absolute
+        bottom: 38px
+        left: 20px
+        color: white
+        padding-top: 0.3em
+        padding-bottom: 0.3em
+        background-color: #353535
+        border-radius: 20px
+        width: 80%
+        height: 4px
+        font-family: $open-sans
+        text-align: center
+
+    .countdownSkeleton
+        position: absolute
+        bottom: 13px
+        left: 20px
+        color: white
+        padding-top: 0.3em
+        padding-bottom: 0.3em
+        background-color: #353535
+        border-radius: 20px
+        width: 80%
+        height: 4px
+        font-family: $open-sans
+        text-align: center
+
+
+@keyframes load
+    from 
+        left: -150px
+    to
+        left: 100%
+
+@media (max-width: 449px)
+    .expandedCardContainer
+        width: 100%
+        height: 190px
+        padding-left: 0
+        padding-right: 0
+        padding-top: 5px
+        padding-bottom: 5px
+
+        .expandedCard
+            grid-template-columns: 133px minmax(0px, auto)
+
+            .thumbnail
+                object-fit: cover
+                width: 133px
+                height: 190px
+
+@media (min-width: 450px) and (max-width: 699px)
+    .expandedCardContainer
+        width: 100%
+        padding-left: 0
+        padding-right: 0
+        padding-top: 5px
+        padding-bottom: 5px
+
+@media (min-width: 700px) and (max-width: 1284px)
+    .expandedCardContainer
+        width: 47%
+
+@media (min-width: 1285px) and (max-width: 1440px)
+    .expandedCardContainer
+        width: 31.6%

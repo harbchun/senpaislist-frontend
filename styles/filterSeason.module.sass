@@ -1,0 +1,85 @@
+@import global
+    
+.filterSeason
+    height:100%
+    width: 140px
+    position: relative
+
+    .seasonButton
+        display: flex
+        cursor: pointer 
+        height: 100%
+        justify-content: center
+        
+        .textContainer
+            display: flex
+            flex-direction: column
+            justify-content: center
+            margin-left: 20px
+            
+            .subtitle
+                margin-top: -15px
+                color: #959595
+                font-family: $pt-sans
+                font-size: $nav-subtitle-size
+                user-select: none
+
+            .season
+                color: white
+                font-family: $pt-sans
+                font-size: $nav-title-size
+                user-select: none
+
+                &.seasonActive
+                    color: $primary-purple
+
+    .arrowDown
+        width: 6px
+        margin-left: auto
+        margin-right: 20px
+
+    .dropdown
+        background-color: #222222
+        z-index: 2
+        position: absolute
+        border-radius: 10px
+        padding: 10px
+        top: 100px
+        left: 0px
+        display: flex
+
+        .seasonButton
+            color: white
+            font-family: $pt-sans
+            font-size: 14px
+            margin: 12px 8px 12px 8px
+            cursor: pointer
+            border: none
+            background: transparent
+
+            &:hover
+                color: $primary-purple
+
+@media (max-width: 700px)
+    .filterSeason
+        width: 90px
+        .seasonButton
+            margin-top: 3px
+            .textContainer
+                margin-left: 10px
+                .subtitle
+                    font-size: $nav-subtitle-size-s
+                .season
+                    font-size: $nav-title-size-s
+        .arrowDown
+            margin-right: 10px
+
+        .dropdown
+            border-radius: 5px
+            padding: 0px
+            top: 70px
+            left: -50px
+
+            .seasonButton
+                font-size: 10px
+                margin: 6px 4px 6px 4px

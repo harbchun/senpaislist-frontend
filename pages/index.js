@@ -1,30 +1,25 @@
-import MainLayout from '~/components/layouts/mainLayout/MainLayout'
-import Nav from '~/components/nav/Nav'
-import Calendar from '~/components/calendar/Calendar'
-import FilterBar from '~/components/filterBar/FilterBar'
-import Cards from '~/components/cards/Cards'
-import useComponentVisible from '../helpers/hooks/click-outside'
+import React, { useEffect } from 'react'
+import { useRouter } from 'next/router'
+import { useSelector } from 'react-redux'
+import { initializeStore } from '~/rematch/store'
 
-export default function Home() {
-    const { ref, isComponentVisible, setIsComponentVisible } = useComponentVisible(false)
+function Home() {
+    const router = useRouter()
+    const year = useSelector((state) => state.anime.year)
+    const season = useSelector((state) => state.anime.season)
 
-    return (
-        <>
-            <MainLayout
-                header={<Nav />}
-                tools={
-                    <div ref={ref}>
-                        <Calendar
-                            isComponentVisible={isComponentVisible}
-                            setIsComponentVisible={setIsComponentVisible}
-                        />
-                        <FilterBar />
-                    </div>
-                }>
-                <>
-                    <Cards />
-                </>
-            </MainLayout>
-        </>
-    )
+    useEffect(() => {
+        router.push(`${year}-${season}`)
+    }, [])
+
+    return <div></div>
+}
+
+export default Home
+
+export async function getServerSideProps(ctx) {
+    const store = initializeStore()
+    await store.dispatch.anime.trackerSetup(ctx.query)
+
+    return { props: { initialReduxState: store.getState() } }
 }

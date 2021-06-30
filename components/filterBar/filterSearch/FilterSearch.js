@@ -1,6 +1,5 @@
 import React from 'react'
 import Input from '~/components/public/input/Input'
-import { initStore, withRematch } from '~/rematch'
 import { useDispatch } from 'react-redux'
 
 import style from '~/styles/filterSearch.module.sass'
@@ -16,4 +15,4 @@ function FilterSearch() {
     )
 }
 
-export default withRematch(initStore)(FilterSearch)
+export default FilterSearch

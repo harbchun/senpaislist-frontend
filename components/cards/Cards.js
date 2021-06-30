@@ -1,17 +1,20 @@
 import React, { useEffect } from 'react'
 
 import Card from '~/components/cards/card/Card'
+import ExpandedCard from '~/components/cards/expanded-card/ExpandedCard'
 import CardSkeleton from '~/components/cards/card/CardSkeleton'
 import serviceHooks from '~/services'
 import PropTypes from 'prop-types'
 import { useSelector, useDispatch } from 'react-redux'
-import { initStore, withRematch } from '~/rematch'
 import sortQueryBuilder from '~/helpers/sortQueryBuilder'
 import style from '~/styles/cards.module.sass'
 
-function Cards({ year, season }) {
+function Cards() {
     const dispatch = useDispatch()
     const sort = useSelector((state) => state.anime.sort)
+    const year = useSelector((state) => state.anime.year)
+    const view = useSelector((state) => state.anime.view)
+    const season = useSelector((state) => state.anime.season)
     const textSearch = useSelector((state) => state.anime.text)
     const { data, loading, refetch } = serviceHooks.anime.fetchAnime(
         year,
@@ -63,36 +66,47 @@ function Cards({ year, season }) {
     )
 
     return (
-        <div className={style.cards}>
-            {searchFilter.map((anime) => {
-                return (
-                    <Card
-                        title={anime.title}
-                        broadcastTime={anime.title}
-                        nextBroadcast={anime.title}
-                        imgUrl={anime.image_url}
-                        genres={anime.anime_genres}
-                        score={anime.statistic.score}
-                        description={anime.summary}
-                        key={anime.id}
-                    />
-                )
-            })}
-        </div>
+        <>
+            {view === 'Detailed' ? (
+                <div className={style.detailedCardsGrid}>
+                    <div className={style.cards}>
+                        {searchFilter.map((anime) => {
+                            return (
+                                <ExpandedCard
+                                    title={anime.title}
+                                    broadcastTime={anime.title}
+                                    nextBroadcast={anime.title}
+                                    imgUrl={anime.image_url}
+                                    genres={anime.anime_genres}
+                                    score={anime.statistic.score}
+                                    description={anime.summary}
+                                    key={anime.title}
+                                />
+                            )
+                        })}
+                    </div>
+                </div>
+            ) : (
+                <div className={style.simpleCardsGrid}>
+                    <div className={style.cards}>
+                        {searchFilter.map((anime) => {
+                            return (
+                                <Card
+                                    title={anime.title}
+                                    broadcastTime={anime.title}
+                                    nextBroadcast={anime.title}
+                                    imgUrl={anime.image_url}
+                                    score={anime.statistic.score}
+                                    genres={anime.anime_genres}
+                                    key={anime.title}
+                                />
+                            )
+                        })}
+                    </div>
+                </div>
+            )}
+        </>
     )
 }
 
-Cards.propTypes = {
-    year: PropTypes.number,
-    season: PropTypes.string,
-    fetchAnime: PropTypes.func
-}
-
-const mapState = (state) => ({
-    year: state.anime.year,
-    season: state.anime.season
-})
-
-const mapDispatch = (dispatch) => ({})
-
-export default withRematch(initStore, mapState, mapDispatch)(Cards)
+export default Cards

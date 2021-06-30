@@ -1,0 +1,103 @@
+@import global
+    
+.filterYear
+    height:100%
+    width: 110px
+    position: relative
+
+    .yearButton
+        display: flex
+        cursor: pointer 
+        width: 100%
+        height: 100%
+        justify-content: center
+        
+        .textContainer
+            display: flex
+            flex-direction: column
+            justify-content: center
+            
+            .subtitle
+                margin-top: -15px
+                color: #959595
+                font-family: $pt-sans
+                font-size: $nav-subtitle-size
+                user-select: none
+
+            .year
+                color: white
+                font-family: $pt-sans
+                font-size: $nav-title-size
+                user-select: none
+
+                &.yearActive
+                    color: $primary-purple
+
+    .arrowDown
+        width: 6px
+        margin-left: 20px
+
+    .dropdown
+        background-color: #222222
+        z-index: 2
+        position: absolute
+        border-radius: 10px
+        padding: 10px
+        top: 100px
+        left: 0px
+
+        .row
+            display: flex
+            user-select: none
+
+
+            .activeYear
+                color: white
+                font-family: $pt-sans
+                font-size: 13px
+                margin: 10px 6px 10px 6px
+                cursor: pointer
+                border: none
+                background: transparent
+
+                &:hover
+                    color: $primary-purple
+
+            .inactiveYear
+                color: #585858
+                font-family: $pt-sans
+                font-size: 13px
+                margin: 10px 6px 10px 6px
+                border: none
+                background: transparent
+
+@media (max-width: 700px)
+    .filterYear
+        width: 80px
+        .yearButton
+            margin-top: 3px
+            .textContainer
+                .subtitle
+                    font-size: $nav-subtitle-size-s
+                .year
+                    font-size: $nav-title-size-s
+
+        .arrowDown
+            margin-left: 10px
+
+        .dropdown
+            border-radius: 5px
+            padding: 0px
+            top: 70px
+            left: -6px
+
+            .row
+                .activeYear
+                    font-size: 9px
+                    margin: 5px 4px 5px 4px
+                    padding: 0
+
+                .inactiveYear
+                    font-size: 9px
+                    margin: 5px 4px 5px 4px
+                    padding: 0

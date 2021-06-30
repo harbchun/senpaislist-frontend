@@ -15,7 +15,7 @@ function FilterCheckbox() {
     }
     return (
         <div className={style.expandView}>
-            <p className={style.text}>Expanded View</p>
+            <p className={style.text}>Expand</p>
             <Checkbox active={expandedView} handleClick={handleClick}/>
         </div>
     )

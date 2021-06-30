@@ -1,0 +1,66 @@
+@import global
+    
+.filterOrder
+    height:100%
+    width: 155px
+    position: relative
+
+    .orderButton
+        display: flex
+        cursor: pointer 
+        height: 100%
+        justify-content: center
+        
+        .textContainer
+            display: flex
+            flex-direction: column
+            justify-content: center
+            margin-left: 20px
+            
+            .subtitle
+                margin-top: -15px
+                color: #959595
+                font-family: $pt-sans
+                font-size: $nav-subtitle-size
+                user-select: none
+
+            .order
+                color: white
+                font-family: $pt-sans
+                font-size: $nav-title-size
+                user-select: none
+
+                &.orderActive
+                    color: $primary-purple
+
+    .arrowDown
+        width: 6px
+        margin-left: auto
+        margin-right: 20px
+
+    .dropdown
+        background-color: #222222
+        z-index: 2
+        position: absolute
+        border-radius: 10px
+        padding: 10px
+        top: 100px
+        left: 0px
+        display: flex
+
+        .orderButton
+            color: white
+            font-family: $pt-sans
+            font-size: 14px
+            margin: 12px 8px 12px 8px
+            cursor: pointer
+            border: none
+            background: transparent
+
+            &:hover
+                color: $primary-purple
+
+@media (max-width: 700px)
+    .filterOrder
+        display: none
+    
