@@ -19,6 +19,14 @@ const nextConfig = {
           BACKEND_API_URL: 'http://backend:5001/query'
         }
         break
+      case 'staging':
+        console.log('Using development environment!')
+        variables = {
+          APP_ENV: 'staging',
+          GRAPHQL_API_URL: 'https://staging.senpaislist.com/query',
+          BACKEND_API_URL: 'http://backend:5001/query'
+        }
+        break
       case 'development':
         console.log('Using development environment!')
         variables = {

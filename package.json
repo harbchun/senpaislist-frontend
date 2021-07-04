@@ -5,8 +5,10 @@
   "scripts": {
     "dev": "APP_ENV=development next dev",
     "build": "next build",
+    "build:stag": "NODE_ENV=staging APP_ENV=staging next build",
     "build:prod": "NODE_ENV=production APP_ENV=production next build",
     "start": "next start",
+    "start:stag": "NODE_ENV=staging APP_ENV=staging next start",
     "start:prod": "NODE_ENV=production APP_ENV=production next start",
     "lint": "eslint --fix pages components",
     "dev-lint": "npm run lint && npm run dev",
