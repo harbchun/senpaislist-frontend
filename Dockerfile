@@ -6,7 +6,7 @@ WORKDIR /home/node/app
 RUN apk add --update npm
 
 # Installing dependencies
-COPY package*.json .
+COPY package.json .
 RUN npm install
 
 FROM base as development
