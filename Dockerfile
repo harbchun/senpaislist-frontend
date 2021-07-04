@@ -31,6 +31,7 @@ FROM base as staging
 
 COPY --from=stagbuild /home/node/app/.next /home/node/app/.next
 COPY --from=base /home/node/app/node_modules /home/node/app/node_modules
+RUN true
 COPY . .
 
 EXPOSE 3000
@@ -49,6 +50,7 @@ FROM base as production
 
 COPY --from=prodbuild /home/node/app/.next /home/node/app/.next
 COPY --from=base /home/node/app/node_modules /home/node/app/node_modules
+RUN true
 COPY . .
 
 EXPOSE 3000
