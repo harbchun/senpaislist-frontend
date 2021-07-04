@@ -1,43 +1,56 @@
-FROM node:15 as development
+FROM alpine as base
 
 ENV PORT 3000
 
-RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
-RUN mkdir -p /home/node/app/.next && chown -R node:node /home/node/app/.next
 WORKDIR /home/node/app
-
-USER node
+RUN apk add --update npm
 
 # Installing dependencies
-COPY --chown=node:node package*.json ./
+COPY package*.json .
 RUN npm install
 
+FROM base as development
+
 # Copying source files
-COPY --chown=node:node . .
+COPY . .
 
 EXPOSE 3000
 
 # Running the app
 CMD "npm" "run" "dev-lint"
 
-FROM node:15 as production
-
-ENV PORT 3000
-
-RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app 
-WORKDIR /home/node/app
-
-USER node
-
-# Installing dependencies
-COPY --chown=node:node package*.json ./
-RUN npm install
+FROM base as stagbuild
 
 # Copying source files
-COPY --chown=node:node . .
+COPY . .
+COPY --from=base /home/node/app/node_modules /home/node/app/node_modules
 
-# Building app
-RUN npm run build
+RUN npm run build:stag
+
+FROM base as staging
+
+COPY --from=stagbuild /home/node/app/.next /home/node/app/.next
+COPY --from=base /home/node/app/node_modules /home/node/app/node_modules
+COPY . .
+
+EXPOSE 3000
+
+CMD "npm" "run" "start"
+
+FROM base as prodbuild
+
+# Copying source files
+COPY . .
+COPY --from=base /home/node/app/node_modules /home/node/app/node_modules
+
+RUN npm run build:prod
+
+FROM base as production
+
+COPY --from=prodbuild /home/node/app/.next /home/node/app/.next
+COPY --from=base /home/node/app/node_modules /home/node/app/node_modules
+COPY . .
+
 EXPOSE 3000
 
 CMD "npm" "run" "start"
