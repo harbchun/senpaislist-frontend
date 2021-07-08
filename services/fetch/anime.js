@@ -14,7 +14,6 @@ const animesFetch ={
             fetchPolicy: 'no-cache'
           })
           .then(res => {
-            res.data
             return res.data.animes
           })
           .catch(err => {
