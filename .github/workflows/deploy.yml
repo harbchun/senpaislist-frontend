@@ -56,5 +56,5 @@ jobs:
             script: |
               aws ecr get-login-password --region ca-central-1 
               docker login --username AWS --password-stdin 402788700696.dkr.ecr.ca-central-1.amazonaws.com
-              docker pull 402788700696.dkr.ecr.ca-central-1.amazonaws.com/sl-backend-${{ steps.extract_branch.outputs.branch }}:latest
-              docker service update --image 402788700696.dkr.ecr.ca-central-1.amazonaws.com/sl-backend-${{ steps.extract_branch.outputs.branch }}:latest ${{ steps.extract_branch.outputs.branch }}-backend
+              docker pull 402788700696.dkr.ecr.ca-central-1.amazonaws.com/sl-frontend-${{ steps.extract_branch.outputs.branch }}:latest
+              docker service update --image 402788700696.dkr.ecr.ca-central-1.amazonaws.com/sl-frontend-${{ steps.extract_branch.outputs.branch }}:latest ${{ steps.extract_branch.outputs.branch }}-frontend
