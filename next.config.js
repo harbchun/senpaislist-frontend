@@ -16,7 +16,7 @@ const nextConfig = {
         variables = {
           APP_ENV: 'production',
           GRAPHQL_API_URL: 'https://senpaislist.com/query',
-          BACKEND_API_URL: 'http://backend:5001/query'
+          BACKEND_API_URL: 'https://senpaislist.com/query'
         }
         break
       case 'staging':
@@ -24,7 +24,7 @@ const nextConfig = {
         variables = {
           APP_ENV: 'staging',
           GRAPHQL_API_URL: 'https://staging.senpaislist.com/query',
-          BACKEND_API_URL: 'http://backend:5001/query'
+          BACKEND_API_URL: 'https://staging.senpaislist.com/query'
         }
         break
       case 'development':
