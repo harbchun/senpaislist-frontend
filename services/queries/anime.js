@@ -16,6 +16,9 @@ export const FETCH_ANIME = gql`
                 season
                 year
             }
+            anime_studios {
+                studio
+            }
         }
     }
     `

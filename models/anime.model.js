@@ -11,8 +11,8 @@ const ANIME = {
     season: currentSeason(),
     animeList: [],
     filters: [],
-    orders: ['Popularity', 'Score', 'Title'],
-    sort: 'Popularity',
+    orders: ['Popularity:ASC', 'Score:DESC', 'Title:ASC'],
+    sort: 'Popularity:ASC',
     text: '',
     views: ['Detailed', 'Simple'],
     view: 'Simple'

@@ -4,12 +4,26 @@ import { useInView } from 'react-intersection-observer'
 
 import style from '~/styles/card.module.sass'
 
-function Card({ title, imgUrl, score, genres }) {
+function Card({ title, imgID, score, genres, season, year }) {
+    const imageUrl = `https://senpaislist-images.s3.ca-central-1.amazonaws.com/${year}/${season}/${imgID}.jpg`
     const { ref, inView } = useInView({
         threshold: 0
     })
 
+    const [cutGenres, setCutGenres] = useState(genres)
     const [seen, setSeen] = useState(false)
+
+    useEffect(() => {
+        let i = 0
+        let length = 0
+
+        while (length < 25 && i < genres.length - 1 && i < 3) {
+            length += genres[i].genre.length
+            i++
+        }
+
+        setCutGenres(genres.slice(0, i))
+    }, [])
 
     useEffect(() => {
         if (inView) {
@@ -19,7 +33,7 @@ function Card({ title, imgUrl, score, genres }) {
 
     return (
         <div ref={ref} className={style.card}>
-            {seen ? <img src={imgUrl} alt="thumbnail" className={style.thumbnail} /> : null}
+            {seen ? <img src={imageUrl} alt="thumbnail" className={style.thumbnail} /> : null}
             <div className={style.overlay}>
                 <p className={style.score}>
                     <img src="/static/star.png" alt="star" className={style.star} />
@@ -28,7 +42,7 @@ function Card({ title, imgUrl, score, genres }) {
                 <p className={style.title}>{title}</p>
                 <p className={style.subtitle}>bones • manga</p>
                 <div className={style.genres}>
-                    {genres.map((genre) => {
+                    {cutGenres.map((genre) => {
                         return (
                             <p className={style.genre} key={genre.genre}>
                                 {genre.genre}
@@ -48,7 +62,9 @@ Card.propTypes = {
     broadcastTime: PropTypes.string,
     nextBroadcast: PropTypes.string,
     score: PropTypes.number,
-    imgUrl: PropTypes.string,
+    imgID: PropTypes.string,
+    season: PropTypes.string,
+    year: PropTypes.number,
     genres: PropTypes.array,
     description: PropTypes.string
 }

@@ -63,7 +63,7 @@ function Cards() {
     const searchFilter = data.animes.filter((anime) =>
         anime.title.toLowerCase().includes(textSearch.toLowerCase())
     )
-
+    console.log(searchFilter)
     return (
         <>
             {view === 'Detailed' ? (
@@ -75,8 +75,10 @@ function Cards() {
                                     title={anime.title}
                                     broadcastTime={anime.title}
                                     nextBroadcast={anime.title}
-                                    imgUrl={anime.image_url}
+                                    imgID={anime.image_id}
                                     genres={anime.anime_genres}
+                                    season={anime.airing_information.season}
+                                    year={anime.airing_information.year}
                                     score={anime.statistic.score}
                                     description={anime.summary}
                                     key={anime.title}
@@ -94,9 +96,11 @@ function Cards() {
                                     title={anime.title}
                                     broadcastTime={anime.title}
                                     nextBroadcast={anime.title}
-                                    imgUrl={anime.image_url}
-                                    score={anime.statistic.score}
+                                    imgID={anime.image_id}
                                     genres={anime.anime_genres}
+                                    season={anime.airing_information.season}
+                                    year={anime.airing_information.year}
+                                    score={anime.statistic.score}
                                     key={anime.title}
                                 />
                             )

@@ -5,7 +5,9 @@ import { useInView } from 'react-intersection-observer'
 
 import style from '~/styles/expandedCard.module.sass'
 
-function ExpandedCard({ title, imgUrl, genres, score, description }) {
+function ExpandedCard({ title, imgID, genres, score, description, season, year }) {
+    const imageUrl = `https://senpaislist-images.s3.ca-central-1.amazonaws.com/${year}/${season}/${imgID}.jpg`
+
     const { ref, inView } = useInView({
         threshold: 0
     })
@@ -21,7 +23,7 @@ function ExpandedCard({ title, imgUrl, genres, score, description }) {
     return (
         <div className={style.expandedCardContainer}>
             <div ref={ref} className={style.expandedCard}>
-                {seen ? <img src={imgUrl} alt="thumbnail" className={style.thumbnail} /> : null}
+                {seen ? <img src={imageUrl} alt="thumbnail" className={style.thumbnail} /> : null}
                 <p className={style.score}>
                     <img src="/static/star.png" alt="star" className={style.star} />
                     {score}
