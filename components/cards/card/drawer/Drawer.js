@@ -13,16 +13,20 @@ function Drawer({ title, genres, description }) {
 
     useEffect(() => {
         if (width < 255) {
-            setCutDescription(
-                description.slice(0, 110) + `${description.length < 110 ? '' : '...'}`
-            )
+            if (description) {
+                setCutDescription(
+                    description.slice(0, 110) + `${description.length < 110 ? '' : '...'}`
+                )
+            }
             setCutGenres(genres.slice(0, 2))
             if (title.length > 44) {
                 setCutTitle(true)
             }
         } else {
-            setCutDescription(description)
-            setCutGenres(genres)
+            if (description) {
+                setCutDescription(description.slice(0, 400) + `${description.length < 400 ? '' : '...'}`)
+            }
+            setCutGenres(genres.slice(0, 4))
             if (title.length > 44) {
                 setCutTitle(false)
             }

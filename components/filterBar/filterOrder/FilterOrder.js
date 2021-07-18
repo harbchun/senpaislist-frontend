@@ -19,7 +19,7 @@ function Dropdown({ orders, isComponentVisible }) {
             {orders.map((order) => {
                         return (
                             <button key={order} className={style.orderButton} onClick={() => handleClick(order)}>
-                                <p>{order}</p>
+                                <p>{order.split(':')[0]}</p>
                             </button>                            
                         )
                     })}
@@ -38,7 +38,7 @@ function FilterOrder() {
             <div className={style.orderButton} onClick={() => setIsComponentVisible(!isComponentVisible)} onMouseEnter={() => setActive(true)} onMouseLeave={() => setActive(false)}>
                 <div className={style.textContainer}>
                     <p className={style.subtitle}>orders</p>
-                    <p className={`${style.order} ${active ? style.orderActive : ''}`}>{order}</p>
+                    <p className={`${style.order} ${active ? style.orderActive : ''}`}>{order.split(':')[0]}</p>
                 </div>
                 <img className={style.arrowDown} src='/static/arrow-down.svg'/>
             </div>

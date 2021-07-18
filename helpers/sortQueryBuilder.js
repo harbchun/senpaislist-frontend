@@ -2,7 +2,7 @@ export default function sortQueryBuilder(sortString) {
     let sort = sortString.split(':')[0]
     let direction = sortString.split(':')[1]
 
-    if (direction === 'Ascending') {
+    if (direction === 'ASC') {
         direction = 'asc'
     } else {
         direction = 'desc'
