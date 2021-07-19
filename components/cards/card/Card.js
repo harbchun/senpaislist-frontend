@@ -4,7 +4,7 @@ import { useInView } from 'react-intersection-observer'
 
 import style from '~/styles/card.module.sass'
 
-function Card({ title, imgID, score, genres, season, year }) {
+function Card({ title, imgID, score, genres, season, year, source, studios }) {
     const imageUrl = `https://senpaislist-images.s3.ca-central-1.amazonaws.com/${year}/${season}/${imgID}.jpg`
     const { ref, inView } = useInView({
         threshold: 0
@@ -40,7 +40,7 @@ function Card({ title, imgID, score, genres, season, year }) {
                     {score}
                 </p>
                 <p className={style.title}>{title}</p>
-                <p className={style.subtitle}>bones • manga</p>
+                <p className={style.subtitle}>{studios.map((studio) => { return studio.studio + ' '})} • {source}</p>
                 <div className={style.genres}>
                     {cutGenres.map((genre) => {
                         return (
@@ -66,7 +66,9 @@ Card.propTypes = {
     season: PropTypes.string,
     year: PropTypes.number,
     genres: PropTypes.array,
-    description: PropTypes.string
+    description: PropTypes.string,
+    source: PropTypes.string,
+    studios: PropTypes.array
 }
 
 export default Card

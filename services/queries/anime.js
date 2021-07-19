@@ -6,6 +6,7 @@ export const FETCH_ANIME = gql`
             title
             image_id
             summary
+            source
             anime_genres {
                 genre
             }

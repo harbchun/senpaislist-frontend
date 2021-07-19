@@ -26,7 +26,7 @@ function Home() {
     }, [])
 
     useEffect(() => {
-        router.push(`${year}-${season}`, undefined, { shallow: true })
+        router.push(`${year}-${season.toLowerCase()}`, undefined, { shallow: true })
     }, [year, season])
 
     return (

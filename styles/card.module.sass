@@ -53,7 +53,7 @@
             font-size: 16px
 
         .subtitle
-            color: #777777
+            color: #9b9b9b
             font-family: $pt-sans
             margin-left: 5px
             margin-bottom: 5px
@@ -86,9 +86,13 @@
             margin-left: 5px
     
 .cardSkeleton
+    display: inline-block
     position: relative
-    overflow: hidden
     border-radius: 5px
+    overflow: hidden
+    height: 330px
+    width: 210px
+    margin: 10px
 
     &:before
         content: ''
@@ -101,25 +105,28 @@
         background: linear-gradient(to right, transparent 0%, #353535 50%, transparent 100%)
         animation: load 1s cubic-bezier(0.4, 0.0, 0.2, 1) infinite
 
-    .genreSkeleton
-        color: white
-        font-family: $open-sans
-        background-color: #353535
-        border-radius: 50px
-        font-size: 12px
-        line-height: 18px
-        padding: 0 1em
-        height: 15px
-        width:50px
-        margin: 0 0.5em
+    .cardHeader
+        display: flex
+        margin-top: 10px
+        .genreSkeleton
+            color: white
+            font-family: $open-sans
+            background-color: #353535
+            border-radius: 50px
+            font-size: 12px
+            line-height: 18px
+            padding: 0 1em
+            height: 15px
+            width:50px
+            margin: 0 0.5em
 
-    .addButtonSkeleton
-        position: relative
-        border-radius: 50px
-        width: 17px
-        height: 17px
-        background-color: #353535
-        margin: 0 0.5em 0 auto
+        .addButtonSkeleton
+            position: relative
+            border-radius: 50px
+            width: 17px
+            height: 17px
+            background-color: #353535
+            margin: 0 0.5em 0 auto
 
     .titleSkeleton
         position: absolute
@@ -156,8 +163,6 @@
     to
         left: 100%
 
-@media (max-width: 710px)
-
 @media (min-width: 399px) and (max-width: 710px)
     .card
         height: 250px
@@ -179,7 +184,7 @@
                 font-size: 13px
 
             .subtitle
-                color: #777777
+                color: #9b9b9b
                 font-family: $pt-sans
                 margin-left: 5px
                 margin-bottom: 5px

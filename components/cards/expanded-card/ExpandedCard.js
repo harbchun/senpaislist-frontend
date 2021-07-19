@@ -5,7 +5,7 @@ import { useInView } from 'react-intersection-observer'
 
 import style from '~/styles/expandedCard.module.sass'
 
-function ExpandedCard({ title, imgID, genres, score, description, season, year }) {
+function ExpandedCard({ title, imgID, genres, score, description, season, year, source, studios }) {
     const imageUrl = `https://senpaislist-images.s3.ca-central-1.amazonaws.com/${year}/${season}/${imgID}.jpg`
 
     const { ref, inView } = useInView({
@@ -39,9 +39,13 @@ ExpandedCard.propTypes = {
     broadcastTime: PropTypes.string,
     nextBroadcast: PropTypes.string,
     score: PropTypes.string,
-    imgUrl: PropTypes.string,
+    imgID: PropTypes.string,
+    season: PropTypes.string,
+    year: PropTypes.number,
     genres: PropTypes.array,
-    description: PropTypes.string
+    description: PropTypes.string,
+    source: PropTypes.string,
+    studios: PropTypes.array
 }
 
 export default ExpandedCard
