@@ -3,14 +3,11 @@ import React, { useState } from 'react'
 import style from '~/styles/card.module.sass'
 
 function Card() {
-    const [expand, setExpand] = useState(false)
-
     return (
         <div className={`${style.card} ${style.cardSkeleton}`}>
             <div
                 role="presentation"
-                className={`${style.cardBody}`}
-                onClick={() => setExpand(!expand)}>
+                className={`${style.cardBody}`}>
                 <div className={style.cardHeader}>
                     <p className={style.genreSkeleton}></p>
                     <div className={style.addButtonSkeleton}></div>

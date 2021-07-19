@@ -9,7 +9,7 @@ function Home() {
     const season = useSelector((state) => state.anime.season)
 
     useEffect(() => {
-        router.push(`${year}-${season}`)
+        router.push(`${year}-${season.toLowerCase()}`)
     }, [])
 
     return <div></div>

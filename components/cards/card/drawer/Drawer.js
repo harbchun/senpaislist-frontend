@@ -24,7 +24,9 @@ function Drawer({ title, genres, description }) {
             }
         } else {
             if (description) {
-                setCutDescription(description.slice(0, 400) + `${description.length < 400 ? '' : '...'}`)
+                setCutDescription(
+                    description.slice(0, 400) + `${description.length < 400 ? '' : '...'}`
+                )
             }
             setCutGenres(genres.slice(0, 4))
             if (title.length > 44) {

@@ -2,6 +2,7 @@
 
 .drawer
     display: grid
+    height: 250px
     grid-template-rows: 0.3fr 2fr 0.3fr 0.3fr
 
     .title
@@ -33,6 +34,25 @@
             overflow-y: auto
             grid-row-start: 2
             grid-row-end: 5
+
+            /* width */
+        &::-webkit-scrollbar
+            width: 4px
+        
+
+        /* Track */
+        &::-webkit-scrollbar-track 
+            background: #ffffff00
+        
+        /* Handle */
+        &::-webkit-scrollbar-thumb
+            background: #777777
+        
+
+        /* Handle on hover */
+        &::-webkit-scrollbar-thumb:hover
+            background: #494949
+        
     .genres
         display: flex
         margin-left: 5px

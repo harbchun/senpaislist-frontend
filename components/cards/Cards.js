@@ -49,11 +49,24 @@ function Cards() {
             <CardSkeleton />
             <CardSkeleton />
             <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
         </>
     )
 
     if (loading) {
-        return <div className={style.cards}>{skeletonCards}</div>
+        return <div className={style.simpleCardsGrid}><div className={style.cards}>{skeletonCards}</div></div>
     }
 
     if (!loading && !data) {
@@ -63,7 +76,7 @@ function Cards() {
     const searchFilter = data.animes.filter((anime) =>
         anime.title.toLowerCase().includes(textSearch.toLowerCase())
     )
-    console.log(searchFilter)
+
     return (
         <>
             {view === 'Detailed' ? (
@@ -81,6 +94,8 @@ function Cards() {
                                     year={anime.airing_information.year}
                                     score={anime.statistic.score}
                                     description={anime.summary}
+                                    source={anime.source}
+                                    studios={anime.anime_studios}
                                     key={anime.title}
                                 />
                             )
@@ -101,6 +116,8 @@ function Cards() {
                                     season={anime.airing_information.season}
                                     year={anime.airing_information.year}
                                     score={anime.statistic.score}
+                                    source={anime.source}
+                                    studios={anime.anime_studios}
                                     key={anime.title}
                                 />
                             )
