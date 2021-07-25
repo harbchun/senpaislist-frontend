@@ -40,7 +40,12 @@ function Card({ title, imgID, score, genres, season, year, source, studios }) {
                     {score}
                 </p>
                 <p className={style.title}>{title}</p>
-                <p className={style.subtitle}>{studios.map((studio) => { return studio.studio + ' '})} • {source}</p>
+                <p className={style.subtitle}>
+                    {studios.map((studio) => {
+                        return studio.studio + ' '
+                    })}{' '}
+                    • {source}
+                </p>
                 <div className={style.genres}>
                     {cutGenres.map((genre) => {
                         return (

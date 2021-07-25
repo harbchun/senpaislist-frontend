@@ -66,7 +66,11 @@ function Cards() {
     )
 
     if (loading) {
-        return <div className={style.simpleCardsGrid}><div className={style.cards}>{skeletonCards}</div></div>
+        return (
+            <div className={style.simpleCardsGrid}>
+                <div className={style.cards}>{skeletonCards}</div>
+            </div>
+        )
     }
 
     if (!loading && !data) {
